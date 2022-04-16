@@ -1,11 +1,13 @@
 import 'package:e_warong/app/data/models/sembako_model.dart';
 import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
-import 'package:e_warong/app/modules/agen/views/form_sembako.dart';
+import 'package:e_warong/app/modules/agen/form_sembako/controllers/form_sembako_controller.dart';
+import 'package:e_warong/app/routes/app_pages.dart';
+import 'package:e_warong/app/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StokSembako extends GetView<AgenController> {
-  const StokSembako({Key? key}) : super(key: key);
+class StokSembakoView extends GetView<AgenController> {
+  const StokSembakoView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,13 @@ class StokSembako extends GetView<AgenController> {
         ),
         onPressed: () {
           final SembakoModel sembakoModel = SembakoModel();
-          controller.openFormSembako(sembako: sembakoModel);
+
+          Get.toNamed(
+            Routes.FORM_SEMBAKO,
+            arguments: FormSembakoArguments(
+              sembako: sembakoModel,
+            ),
+          );
         },
       ),
       body: Column(
@@ -30,20 +38,7 @@ class StokSembako extends GetView<AgenController> {
 
                 return ListTile(
                   isThreeLine: true,
-                  leading: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      color: Colors.grey[300],
-                      child: sembako.foto != null
-                          ? Image.network(
-                              sembako.foto!,
-                              fit: BoxFit.cover,
-                            )
-                          : Icon(Icons.image),
-                    ),
-                  ),
+                  leading: CustomImage(foto: sembako.foto),
                   title: Text(sembako.nama),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +48,13 @@ class StokSembako extends GetView<AgenController> {
                     ],
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () => controller.openFormSembako(
-                      sembako: sembako, formType: FormType.edit),
+                  onTap: () => Get.toNamed(
+                    Routes.FORM_SEMBAKO,
+                    arguments: FormSembakoArguments(
+                      formType: FormType.edit,
+                      sembako: sembako,
+                    ),
+                  ),
                 );
               }),
             ),

@@ -13,7 +13,7 @@ class AppTheme {
           titleTextStyle: kHeaderTextStyle.copyWith(
             color: Colors.white,
           ),
-          iconTheme: IconThemeData(color: secondaryColor),
+          // iconTheme: IconThemeData(color: secondaryColor),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: secondaryColor,

@@ -1,10 +1,13 @@
-import 'package:e_warong/app/modules/agen/views/stok_sembako.dart';
+import 'package:e_warong/app/modules/agen/views/pengaturan_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/agen_controller.dart';
+
+import 'stok_sembako_view.dart';
+import 'pesanan_view.dart';
 
 class AgenView extends GetView<AgenController> {
   @override
@@ -18,9 +21,9 @@ class AgenView extends GetView<AgenController> {
         body: IndexedStack(
           index: controller.tabIndexSelected.value,
           children: [
-            StokSembako(),
-            const Text("1"),
-            const Text("1"),
+            StokSembakoView(),
+            PesananView(),
+            PengaturanView(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

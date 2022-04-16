@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class CustomSubmitButton extends StatelessWidget {
   final Widget? icon;
   final String text;
+  final Color? color;
   final Function onSubmit;
 
   const CustomSubmitButton({
     Key? key,
     this.icon,
+    this.color = secondaryColor,
     required this.text,
     required this.onSubmit,
   }) : super(key: key);
@@ -17,7 +19,7 @@ class CustomSubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: secondaryColor,
+      color: color,
       child: InkWell(
         onTap: () => onSubmit(),
         splashColor: Colors.white,
