@@ -1,5 +1,6 @@
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
+import 'package:e_warong/app/widgets/custom_chip.dart';
 import 'package:e_warong/app/widgets/custom_image.dart';
 import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:flutter/material.dart';
@@ -109,6 +110,21 @@ class DetailPesananView extends GetView<DetailPesananController> {
                               style: primaryTextStyle,
                             ),
                           ),
+                          if (controller.pesanan.value.status != null)
+                            Divider(),
+                          if (controller.pesanan.value.status != null)
+                            ListTile(
+                              title: Text(
+                                "Status",
+                                style: boldTextStyle,
+                              ),
+                              trailing: CustomChip(
+                                label: controller.pesanan.value.statusPesanan,
+                                color: controller.pesanan.value.status == false
+                                    ? dangerColor
+                                    : secondaryColor,
+                              ),
+                            ),
                         ],
                       )
                     ],

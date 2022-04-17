@@ -35,4 +35,16 @@ class PesananModel {
     );
     return currencyFormatter.format(int.parse(sembako!.harga) * jumlah!);
   }
+
+  String get statusPesanan {
+    if (selesai == true) {
+      return "Selesai";
+    } else if (status == true) {
+      return "Menunggu konfirmasi dari pembeli";
+    } else if (status == false) {
+      return "Ditolak";
+    } else {
+      return "";
+    }
+  }
 }

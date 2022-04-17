@@ -1,6 +1,8 @@
 import 'package:e_warong/app/data/models/pesanan_model.dart';
 import 'package:e_warong/app/modules/agen/detail_pesanan/controllers/detail_pesanan_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
+import 'package:e_warong/app/themes/app_colors.dart';
+import 'package:e_warong/app/themes/app_text.dart';
 import 'package:e_warong/app/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,9 +18,13 @@ class PesananList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeago.setLocaleMessages('id', timeago.IdMessages());
+
     return pesananList.isEmpty
         ? Center(
-            child: Text('Tidak ada data pesanan'),
+            child: Text(
+              'Tidak ada data pesanan',
+            ),
           )
         : ListView.builder(
             itemCount: pesananList.length,
