@@ -1,5 +1,4 @@
-import 'package:e_warong/app/modules/agen/pesanan/views/pesanan_masuk.dart';
-import 'package:e_warong/app/modules/agen/pesanan/views/pesanan_selesai.dart';
+import 'package:e_warong/app/modules/agen/pesanan/views/pesanan_list.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -51,10 +50,10 @@ class PesananView extends GetView<PesananController> {
                   Expanded(
                     child: TabBarView(
                       children: <Widget>[
-                        PesananMasuk(),
-                        Container(),
-                        Container(),
-                        PesananSelesai(),
+                        PesananList(pesananList: controller.pesananMasuk),
+                        PesananList(pesananList: controller.pesananDitolak),
+                        PesananList(pesananList: controller.pesananDiterima),
+                        PesananList(pesananList: controller.pesananSelesai),
                       ],
                     ),
                   ),
