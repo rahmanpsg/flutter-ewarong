@@ -7,7 +7,6 @@ class AgenController extends GetxController {
   RxInt tabIndexSelected = 0.obs;
 
   RxList<SembakoModel> sembakoList = <SembakoModel>[].obs;
-  RxList<PesananModel> pesananList = <PesananModel>[].obs;
 
   @override
   void onInit() {
@@ -33,22 +32,6 @@ class AgenController extends GetxController {
         jenis: JenisSembako.beras,
         harga: 6500,
         stok: 15,
-      ),
-    ]);
-
-    pesananList.addAll([
-      PesananModel(
-        id: "1",
-        user: UserModel(nama: "rahman", ktm: "123456789"),
-        sembako: SembakoModel(
-          id: "1",
-          nama: "Terigu Karung 25KG",
-          jenis: JenisSembako.beras,
-          harga: 10000,
-          stok: 5,
-        ),
-        jumlah: 4,
-        createdAt: DateTime.now(),
       ),
     ]);
   }

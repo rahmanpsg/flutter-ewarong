@@ -1,9 +1,13 @@
 import 'package:e_warong/app/data/models/pesanan_model.dart';
+import 'package:e_warong/app/modules/agen/pesanan/controllers/pesanan_controller.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:get/get.dart';
 
 class DetailPesananController extends GetxController {
-  Rx<PesananModel> pesanan = PesananModel().obs;
+  late final Rx<PesananModel> pesanan = PesananModel().obs;
+
+  // final List<PesananModel> pesananMasuk =
+  //     Get.find<AgenController>().pesananMasuk;
 
   @override
   void onInit() {
@@ -21,20 +25,21 @@ class DetailPesananController extends GetxController {
   void onClose() {}
 
   void confirmPesanan(bool status) {
+    final String _title = status ? 'menerima' : 'menolak';
+
     Get.defaultDialog(
       title: "Konfirmasi Pesanan",
-      middleText: "Apakah anda yakin ingin mengkonfirmasi pesanan ini?",
+      middleText: "Apakah anda yakin ingin $_title pesanan ini?",
       textConfirm: "Ya",
       textCancel: "Batal",
       buttonColor: secondaryColor,
       onConfirm: () {
         pesanan.value.status = status;
-        pesanan.value.jumlah = 5;
-        // update();
+
+        pesanan.refresh();
+        Get.find<PesananController>().pesananList.refresh();
         Get.back();
       },
-      // confirmTextColor: primaryColor,
-      // cancelTextColor: dangerColor,
     );
   }
 }

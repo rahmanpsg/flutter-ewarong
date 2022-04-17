@@ -8,6 +8,7 @@ class PesananModel {
   SembakoModel? sembako;
   int? jumlah;
   bool? status;
+  bool? selesai;
   DateTime? createdAt;
 
   PesananModel({
@@ -16,6 +17,7 @@ class PesananModel {
     this.sembako,
     this.jumlah,
     this.status,
+    this.selesai,
     this.createdAt,
   });
 

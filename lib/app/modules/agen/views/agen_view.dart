@@ -1,3 +1,4 @@
+import 'package:e_warong/app/modules/agen/pesanan/views/pesanan_view.dart';
 import 'package:e_warong/app/modules/agen/views/pengaturan_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:get/get.dart';
 import '../controllers/agen_controller.dart';
 
 import 'stok_sembako_view.dart';
-import 'pesanan_view.dart';
 
 class AgenView extends GetView<AgenController> {
   @override
@@ -23,10 +23,12 @@ class AgenView extends GetView<AgenController> {
           children: [
             StokSembakoView(),
             PesananView(),
+            Container(),
             PengaturanView(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          showUnselectedLabels: true,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.store),
@@ -37,13 +39,17 @@ class AgenView extends GetView<AgenController> {
               label: 'Pesanan',
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.data_thresholding_rounded),
+              label: 'Laporan',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: 'Pengaturan',
             ),
           ],
           currentIndex: controller.tabIndexSelected.value,
-          backgroundColor: primaryColor,
-          selectedItemColor: Colors.white,
+          backgroundColor: Colors.white,
+          selectedItemColor: primaryColor,
           unselectedItemColor: secondaryColor,
           onTap: controller.changePage,
         ),

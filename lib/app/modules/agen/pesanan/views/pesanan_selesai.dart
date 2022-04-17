@@ -1,23 +1,23 @@
 import 'package:e_warong/app/data/models/pesanan_model.dart';
-import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
 import 'package:e_warong/app/modules/agen/detail_pesanan/controllers/detail_pesanan_controller.dart';
+import 'package:e_warong/app/modules/agen/pesanan/controllers/pesanan_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class PesananMasuk extends GetView<AgenController> {
-  const PesananMasuk({Key? key}) : super(key: key);
+class PesananSelesai extends GetView<PesananController> {
+  const PesananSelesai({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     timeago.setLocaleMessages('id', timeago.IdMessages());
 
     return ListView.builder(
-      itemCount: controller.pesananList.length,
+      itemCount: controller.pesananSelesai.length,
       itemBuilder: (context, index) {
-        PesananModel pesanan = controller.pesananList[index];
+        PesananModel pesanan = controller.pesananSelesai[index];
 
         return ListTile(
           isThreeLine: true,
