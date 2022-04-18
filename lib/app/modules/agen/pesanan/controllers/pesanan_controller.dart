@@ -4,22 +4,25 @@ import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:get/get.dart';
 
 class PesananController extends GetxController {
+  RxBool isLoading = true.obs;
+
   RxList<PesananModel> pesananList = <PesananModel>[].obs;
 
   List<PesananModel> get pesananMasuk =>
       pesananList.where((pesanan) => pesanan.status == null).toList();
-
   List<PesananModel> get pesananDitolak =>
       pesananList.where((pesanan) => pesanan.status == false).toList();
-
   List<PesananModel> get pesananDiterima =>
       pesananList.where((pesanan) => pesanan.status == true).toList();
-
   List<PesananModel> get pesananSelesai =>
       pesananList.where((pesanan) => pesanan.selesai == true).toList();
 
   @override
-  void onInit() {
+  void onInit() async {
+    await Future.delayed(Duration(seconds: 3));
+
+    isLoading.value = false;
+
     pesananList.addAll([
       PesananModel(
         id: "1",
@@ -65,7 +68,7 @@ class PesananController extends GetxController {
         ),
         jumlah: 4,
         status: true,
-        createdAt: DateTime.now(),
+        createdAt: DateTime(2022, 1, 1),
       ),
     );
   }

@@ -5,8 +5,7 @@ import '../modules/agen/detail_pesanan/bindings/detail_pesanan_binding.dart';
 import '../modules/agen/detail_pesanan/views/detail_pesanan_view.dart';
 import '../modules/agen/form_sembako/bindings/form_sembako_binding.dart';
 import '../modules/agen/form_sembako/views/form_sembako_view.dart';
-import '../modules/agen/pesanan/bindings/pesanan_binding.dart';
-import '../modules/agen/pesanan/views/pesanan_view.dart';
+import '../modules/agen/pengaturan/views/pengaturan_view.dart';
 import '../modules/agen/views/agen_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
@@ -38,11 +37,6 @@ class AppPages {
           name: _Paths.FORM_SEMBAKO,
           page: () => FormSembakoView(),
           binding: FormSembakoBinding(),
-        ),
-        GetPage(
-          name: _Paths.PESANAN,
-          page: () => PesananView(),
-          binding: PesananBinding(),
         ),
       ],
     ),

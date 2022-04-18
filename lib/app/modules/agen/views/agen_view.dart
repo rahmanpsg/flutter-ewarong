@@ -1,13 +1,13 @@
+import 'package:e_warong/app/modules/agen/laporan/views/laporan_view.dart';
+import 'package:e_warong/app/modules/agen/pengaturan/views/pengaturan_view.dart';
 import 'package:e_warong/app/modules/agen/pesanan/views/pesanan_view.dart';
-import 'package:e_warong/app/modules/agen/views/pengaturan_view.dart';
+import 'package:e_warong/app/modules/agen/stok_sembako/views/stok_sembako_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/agen_controller.dart';
-
-import 'stok_sembako_view.dart';
 
 class AgenView extends GetView<AgenController> {
   @override
@@ -23,8 +23,8 @@ class AgenView extends GetView<AgenController> {
           children: [
             StokSembakoView(),
             PesananView(),
-            Container(),
-            PengaturanView(),
+            LaporanView(),
+            PengaturanView()
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

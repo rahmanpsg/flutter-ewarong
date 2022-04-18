@@ -16,7 +16,7 @@ class AuthView extends GetView<AuthController> {
         child: Column(
           children: <Widget>[
             Text(
-              'Aplikasi Transaksi Keluarga Penerima Manfaat (KMP) Program Sembako Kota Parepare',
+              'Aplikasi Transaksi Keluarga Penerima Manfaat (KPM) Program Sembako Kota Parepare',
               style: kHeaderTextStyle.copyWith(color: primaryColor),
               textAlign: TextAlign.center,
             ),

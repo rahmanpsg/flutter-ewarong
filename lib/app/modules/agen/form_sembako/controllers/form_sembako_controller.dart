@@ -1,5 +1,5 @@
 import 'package:e_warong/app/data/models/sembako_model.dart';
-import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
+import 'package:e_warong/app/modules/agen/stok_sembako/controllers/stok_sembako_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,8 @@ class FormSembakoController extends GetxController {
   late final TextEditingController hargaController;
   late final TextEditingController stokController;
 
-  final List<SembakoModel> sembakoList = Get.find<AgenController>().sembakoList;
+  final RxList<SembakoModel> sembakoList =
+      Get.find<StokSembakoController>().sembakoList;
 
   @override
   void onInit() {
@@ -54,11 +55,8 @@ class FormSembakoController extends GetxController {
 
   void editSembako() {
     setData();
-
     final int index = sembakoList.indexOf(sembako);
-
     sembakoList[index] = sembako;
-
     Get.back();
   }
 
