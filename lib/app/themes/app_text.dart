@@ -13,7 +13,7 @@ const dangerTextStyle = TextStyle(
   color: dangerColor,
 );
 
-const boldTextStyle = TextStyle(fontWeight: FontWeight.bold);
+const boldTextStyle = TextStyle(fontWeight: FontWeight.w700);
 
 const kHeaderTextStyle = TextStyle(
   fontSize: 20,

@@ -26,8 +26,8 @@ class CustomSubmitButton extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: primaryColor,
-              width: 1.0,
+              color: Colors.grey,
+              width: 1,
             ),
           ),
           child: Padding(

@@ -1,20 +1,16 @@
 import 'package:get/get.dart';
 
 class PengaturanController extends GetxController {
-  //TODO: Implement PengaturanController
+  RxBool isLoading = true.obs;
 
-  final count = 0.obs;
+  RxBool isEdit = false.obs;
+
   @override
   void onInit() {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void toggleEdit() {
+    isEdit.value = !isEdit.value;
   }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

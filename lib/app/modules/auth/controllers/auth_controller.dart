@@ -22,15 +22,12 @@ class AuthController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    kpmController.dispose();
-    passMasyarakatController.dispose();
-    super.onClose();
-  }
-
   void login() {
     Get.offNamed(Routes.AGEN);
+  }
+
+  void logout() {
+    Get.offNamed(Routes.AUTH);
   }
 
   void register() {
