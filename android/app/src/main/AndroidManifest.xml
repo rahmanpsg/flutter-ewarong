@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skripsi.e_warong">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="e_warong"
         android:name="${applicationName}"

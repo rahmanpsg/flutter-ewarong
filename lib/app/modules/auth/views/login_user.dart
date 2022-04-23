@@ -23,6 +23,7 @@ class LoginUser extends GetView<AuthController> {
           CustomTextField(
             controller: controller.kpmController,
             hintText: "Masukkan Nomor KPM",
+            keyboardType: TextInputType.number,
           ),
           const SizedBox(height: 8),
           Text(
@@ -41,7 +42,7 @@ class LoginUser extends GetView<AuthController> {
               color: Colors.white,
             ),
             text: "Masuk",
-            onSubmit: controller.login,
+            onSubmit: () => controller.login('masyarakat'),
           )
         ],
       ),

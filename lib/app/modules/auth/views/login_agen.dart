@@ -1,5 +1,6 @@
 import 'package:e_warong/app/modules/auth/controllers/auth_controller.dart';
 import 'package:e_warong/app/modules/auth/views/register_agen.dart';
+import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:e_warong/app/widgets/custom_submit_button.dart';
@@ -43,7 +44,7 @@ class LoginAgen extends GetView<AuthController> {
               color: Colors.white,
             ),
             text: "Masuk",
-            onSubmit: controller.login,
+            onSubmit: () => controller.login('agen'),
           ),
           const SizedBox(height: 8),
           Row(
@@ -51,10 +52,11 @@ class LoginAgen extends GetView<AuthController> {
               const Text("Belum punya akun? "),
               GestureDetector(
                 onTap: () {
-                  Get.bottomSheet(
-                    RegisterAgen(),
-                    isScrollControlled: true,
-                  );
+                  Get.toNamed(Routes.REGISTER);
+                  // Get.bottomSheet(
+                  //   RegisterAgen(),
+                  //   isScrollControlled: true,
+                  // );
                 },
                 child: Text(
                   "Daftar",

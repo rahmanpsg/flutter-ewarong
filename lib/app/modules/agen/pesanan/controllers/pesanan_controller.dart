@@ -23,54 +23,54 @@ class PesananController extends GetxController {
 
     isLoading.value = false;
 
-    pesananList.addAll([
-      PesananModel(
-        id: "1",
-        user: UserModel(nama: "rahman", ktm: "123456789"),
-        sembako: SembakoModel(
-          id: "1",
-          nama: "Terigu Karung 25KG",
-          jenis: JenisSembako.beras,
-          harga: 10000,
-          stok: 5,
-        ),
-        jumlah: 4,
-        createdAt: DateTime.now(),
-      ),
-      PesananModel(
-        id: "1",
-        user: UserModel(nama: "rahman", ktm: "123456789"),
-        sembako: SembakoModel(
-          id: "1",
-          nama: "Terigu Karung 25KG",
-          jenis: JenisSembako.beras,
-          harga: 10000,
-          stok: 5,
-        ),
-        jumlah: 4,
-        createdAt: DateTime.now(),
-      ),
-    ]);
+    // pesananList.addAll([
+    //   PesananModel(
+    //     id: "1",
+    //     user: UserModel(nama: "rahman", ktm: "123456789"),
+    //     sembako: SembakoModel(
+    //       id: "1",
+    //       nama: "Terigu Karung 25KG",
+    //       jenis: JenisSembako.beras,
+    //       harga: 10000,
+    //       stok: 5,
+    //     ),
+    //     jumlah: 4,
+    //     createdAt: DateTime.now(),
+    //   ),
+    //   PesananModel(
+    //     id: "1",
+    //     user: UserModel(nama: "rahman", ktm: "123456789"),
+    //     sembako: SembakoModel(
+    //       id: "1",
+    //       nama: "Terigu Karung 25KG",
+    //       jenis: JenisSembako.beras,
+    //       harga: 10000,
+    //       stok: 5,
+    //     ),
+    //     jumlah: 4,
+    //     createdAt: DateTime.now(),
+    //   ),
+    // ]);
     super.onInit();
   }
 
   void addDumpPesanan() {
-    pesananList.add(
-      PesananModel(
-        id: "1",
-        user: UserModel(nama: "rahman", ktm: "123456789"),
-        sembako: SembakoModel(
-          id: "1",
-          nama: "Terigu Karung 25KG",
-          jenis: JenisSembako.beras,
-          harga: 10000,
-          stok: 5,
-        ),
-        jumlah: 4,
-        status: true,
-        createdAt: DateTime(2022, 1, 1),
-      ),
-    );
+    // pesananList.add(
+    //   PesananModel(
+    //     id: "1",
+    //     user: UserModel(nama: "rahman", ktm: "123456789"),
+    //     sembako: SembakoModel(
+    //       id: "1",
+    //       nama: "Terigu Karung 25KG",
+    //       jenis: JenisSembako.beras,
+    //       harga: 10000,
+    //       stok: 5,
+    //     ),
+    //     jumlah: 4,
+    //     status: true,
+    //     createdAt: DateTime(2022, 1, 1),
+    //   ),
+    // );
   }
 
   @override

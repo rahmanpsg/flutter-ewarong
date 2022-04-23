@@ -20,133 +20,164 @@ class PengaturanView extends GetView<PengaturanController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: <Widget>[
-          Card(
-            child: Obx(() {
-              return Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                      horizontal: 8,
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        CustomImage(
-                          size: 100,
-                          empty: Icon(
-                            controller.isEdit.isTrue
-                                ? Icons.edit
-                                : Icons.person,
-                            color: controller.isEdit.isTrue
-                                ? primaryColor
-                                : Colors.grey,
-                            size: 40,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            Card(
+              child: Obx(() {
+                return Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16,
+                        horizontal: 16,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          CustomImage(
+                            size: 100,
+                            empty: Icon(
+                              controller.isEdit.isTrue
+                                  ? Icons.edit
+                                  : Icons.person,
+                              color: controller.isEdit.isTrue
+                                  ? primaryColor
+                                  : Colors.grey,
+                              size: 40,
+                            ),
                           ),
-                        ),
-                        ListTile(
-                          title: Text(
-                            "Nama",
-                            style: textStyle,
+                          const SizedBox(height: 8),
+                          ListTile(
+                            title: Text(
+                              "Nama",
+                              style: textStyle,
+                            ),
+                            trailing: Text(
+                              controller.agen.value!.nama,
+                              style: textStyle,
+                            ),
                           ),
-                          trailing: Text(
-                            controller.isEdit.isTrue
-                                ? 'Klik untuk ubah'
-                                : 'Abd Rahman',
-                            style: controller.isEdit.isTrue
-                                ? textEditStyle
-                                : textStyle,
+                          const Divider(),
+                          ListTile(
+                            enabled: controller.isEdit.isTrue,
+                            onTap: () {
+                              controller.showEditDialog(
+                                  'Username', controller.agen.value!.username!);
+                            },
+                            title: Text(
+                              "Username",
+                              style: textStyle,
+                            ),
+                            trailing: Text(
+                              controller.isEdit.isTrue
+                                  ? 'Klik untuk ubah'
+                                  : controller.agen.value!.username!,
+                              style: controller.isEdit.isTrue
+                                  ? textEditStyle
+                                  : textStyle,
+                            ),
                           ),
-                        ),
-                        const Divider(),
-                        ListTile(
-                          title: Text(
-                            "Username",
-                            style: textStyle,
+                          const Divider(),
+                          ListTile(
+                            enabled: controller.isEdit.isTrue,
+                            onTap: () {
+                              controller.showEditDialog(
+                                  'Password', controller.agen.value!.password);
+                            },
+                            title: Text(
+                              "Password",
+                              style: textStyle,
+                            ),
+                            trailing: Text(
+                              controller.isEdit.isTrue
+                                  ? 'Klik untuk ubah'
+                                  : '********',
+                              style: controller.isEdit.isTrue
+                                  ? textEditStyle
+                                  : textStyle,
+                            ),
                           ),
-                          trailing: Text(
-                            controller.isEdit.isTrue
-                                ? 'Klik untuk ubah'
-                                : 'Abd Rahman',
-                            style: controller.isEdit.isTrue
-                                ? textEditStyle
-                                : textStyle,
+                          const Divider(),
+                          ListTile(
+                            title: Text(
+                              "Nomor Telepon",
+                              style: textStyle,
+                            ),
+                            trailing: Text(
+                              controller.agen.value!.telpon,
+                              style: textStyle,
+                            ),
                           ),
-                        ),
-                        const Divider(),
-                        ListTile(
-                          title: Text(
-                            "Password",
-                            style: textStyle,
+                          const Divider(),
+                          ListTile(
+                            title: Text(
+                              "Alamat",
+                              style: textStyle,
+                            ),
+                            trailing: SizedBox(
+                              width: 200,
+                              child: Text(
+                                controller.agen.value!.alamat,
+                                style: textStyle,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
                           ),
-                          trailing: Text(
-                            controller.isEdit.isTrue
-                                ? 'Klik untuk ubah'
-                                : '********',
-                            style: controller.isEdit.isTrue
-                                ? textEditStyle
-                                : textStyle,
+                          const Divider(),
+                          ListTile(
+                            title: Text(
+                              "Tanggal Bergabung",
+                              style: textStyle,
+                            ),
+                            trailing: Text(
+                              controller.agen.value!.tanggal(),
+                              style: textStyle,
+                            ),
                           ),
-                        ),
-                        const Divider(),
-                        ListTile(
-                          title: Text(
-                            "Alamat",
-                            style: textStyle,
-                          ),
-                          trailing: Text(
-                            'Jl. Poros Polman Pinrang',
-                            style: textStyle,
-                          ),
-                        ),
-                        const Divider(),
-                        ListTile(
-                          title: Text(
-                            "Tanggal Bergabung",
-                            style: textStyle,
-                          ),
-                          trailing: Text(
-                            DateTime.now().toLocal().toString(),
-                            style: textStyle,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: IconButton(
-                      onPressed: controller.toggleEdit,
-                      icon: Icon(
-                        controller.isEdit.isTrue ? Icons.save_as : Icons.edit,
-                        color: primaryColor,
+                        ],
                       ),
                     ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        onPressed: controller.isLoading.isTrue
+                            ? null
+                            : controller.toggleEdit,
+                        icon: controller.isLoading.isTrue
+                            ? CircularProgressIndicator()
+                            : Icon(
+                                controller.isEdit.isTrue
+                                    ? Icons.save_as
+                                    : Icons.edit,
+                                color: primaryColor,
+                              ),
+                      ),
+                    ),
+                  ],
+                );
+              }),
+            ),
+            const SizedBox(height: 16),
+            Center(
+              child: SizedBox(
+                width: 150,
+                child: CustomSubmitButton(
+                  color: dangerColor,
+                  icon: Icon(
+                    Icons.logout_rounded,
+                    color: Colors.white,
                   ),
-                ],
-              );
-            }),
-          ),
-          const Spacer(),
-          Center(
-            child: SizedBox(
-              width: 150,
-              child: CustomSubmitButton(
-                color: dangerColor,
-                icon: Icon(
-                  Icons.logout_rounded,
-                  color: Colors.white,
+                  text: 'Keluar',
+                  onSubmit: _authController.logout,
                 ),
-                text: 'Keluar',
-                onSubmit: _authController.logout,
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-        ],
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }

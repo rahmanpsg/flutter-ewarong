@@ -4,6 +4,7 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const AUTH = _Paths.AUTH;
+  static const REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const AGEN = _Paths.AGEN;
   static const FORM_SEMBAKO = _Paths.AGEN + _Paths.FORM_SEMBAKO;
   static const DETAIL_PESANAN = _Paths.AGEN + _Paths.DETAIL_PESANAN;
@@ -12,6 +13,7 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
   static const AUTH = '/auth';
+  static const REGISTER = '/register';
   static const AGEN = '/agen';
   static const FORM_SEMBAKO = '/form-sembako';
   static const DETAIL_PESANAN = '/detail-pesanan';
