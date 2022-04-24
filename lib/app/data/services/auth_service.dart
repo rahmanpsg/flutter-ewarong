@@ -4,6 +4,8 @@ import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:get_storage/get_storage.dart';
 
 class AuthService {
+  final ApiClient _apiClient = ApiClient();
+
   Future<UserModel> verifyToken() async {
     String? token = GetStorage().read('token');
 
@@ -11,7 +13,7 @@ class AuthService {
       throw ApiResponseModel(error: false, message: 'Token tidak ditemukan');
     }
 
-    final response = await ApiClient().getData('/auth/verify', headers: {
+    final response = await _apiClient.getData('/auth/verify', headers: {
       'x-access-token': token,
     });
 
@@ -23,7 +25,7 @@ class AuthService {
   }
 
   Future<UserModel> login(String ktm, String password) async {
-    final response = await ApiClient().postData('/auth/login', {
+    final response = await _apiClient.postData('/auth/login', {
       'ktm': ktm,
       'password': password,
     });
@@ -39,7 +41,7 @@ class AuthService {
   }
 
   Future loginAgen(String username, String password) async {
-    final response = await ApiClient().postData('/auth/login', {
+    final response = await _apiClient.postData('/auth/login', {
       'username': username,
       'password': password,
     });

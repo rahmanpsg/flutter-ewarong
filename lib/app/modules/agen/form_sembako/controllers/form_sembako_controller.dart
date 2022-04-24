@@ -40,10 +40,10 @@ class FormSembakoController extends GetxController {
   void initForm() {
     namaController = TextEditingController(text: sembako.nama);
     hargaController = TextEditingController(
-      text: sembako.harga == "0" ? '' : sembako.harga,
+      text: sembako.harga != null ? sembako.harga.toString() : '',
     );
     stokController = TextEditingController(
-      text: sembako.stok == "0" ? '' : sembako.stok,
+      text: sembako.stok != null ? sembako.stok.toString() : '',
     );
   }
 
@@ -61,9 +61,9 @@ class FormSembakoController extends GetxController {
   }
 
   void setData() {
-    sembako.setNama(namaController.text);
-    sembako.setHarga(int.parse(hargaController.text));
-    sembako.setStok(int.parse(stokController.text));
+    sembako.nama = namaController.text;
+    sembako.harga = int.parse(hargaController.text);
+    sembako.stok = int.parse(stokController.text);
   }
 }
 

@@ -72,7 +72,7 @@ class PengaturanView extends GetView<PengaturanController> {
                             ),
                             trailing: Text(
                               controller.isEdit.isTrue
-                                  ? 'Klik untuk ubah'
+                                  ? controller.username
                                   : controller.agen.value!.username!,
                               style: controller.isEdit.isTrue
                                   ? textEditStyle
@@ -92,7 +92,7 @@ class PengaturanView extends GetView<PengaturanController> {
                             ),
                             trailing: Text(
                               controller.isEdit.isTrue
-                                  ? 'Klik untuk ubah'
+                                  ? controller.password
                                   : '********',
                               style: controller.isEdit.isTrue
                                   ? textEditStyle
@@ -133,7 +133,7 @@ class PengaturanView extends GetView<PengaturanController> {
                               style: textStyle,
                             ),
                             trailing: Text(
-                              controller.agen.value!.tanggal(),
+                              controller.agen.value!.tanggal,
                               style: textStyle,
                             ),
                           ),

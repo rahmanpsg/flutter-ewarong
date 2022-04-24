@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class AuthController extends GetxController {
+  RxBool isLoading = false.obs;
+
   late final AuthService _authService;
 
   // masyarakat
@@ -45,6 +47,8 @@ class AuthController extends GetxController {
   void login(String role) async {
     if (validateFormLogin(role) == false) return;
 
+    isLoading.value = true;
+
     try {
       UserModel? _user;
 
@@ -66,6 +70,8 @@ class AuthController extends GetxController {
     } on ApiResponseModel catch (res) {
       showSnackbar(res.message);
     }
+
+    isLoading.value = false;
   }
 
   void logout() {

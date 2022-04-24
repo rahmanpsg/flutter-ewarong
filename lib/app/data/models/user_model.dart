@@ -29,7 +29,7 @@ class UserModel {
     required this.createdAt,
   });
 
-  String tanggal() {
+  String get tanggal {
     return DateFormat('dd-MM-yyyy').format(DateTime.parse(createdAt));
   }
 

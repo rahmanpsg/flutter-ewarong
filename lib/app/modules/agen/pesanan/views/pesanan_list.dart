@@ -35,7 +35,7 @@ class PesananList extends GetView<PesananController> {
                   return ListTile(
                     isThreeLine: true,
                     leading: CustomImage(foto: pesanan.sembako!.foto),
-                    title: Text(pesanan.sembako!.nama),
+                    title: Text(pesanan.sembako!.nama!),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

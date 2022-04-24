@@ -95,7 +95,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                               style: boldTextStyle,
                             ),
                             trailing: Text(
-                              controller.pesanan.value.sembako!.nama,
+                              controller.pesanan.value.sembako!.nama!,
                               style: primaryTextStyle,
                             ),
                           ),

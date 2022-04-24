@@ -1,4 +1,6 @@
+import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
+import 'package:e_warong/app/data/services/user_service.dart';
 import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/widgets/custom_text_field.dart';
@@ -7,15 +9,53 @@ import 'package:get/get.dart';
 
 class PengaturanController extends GetxController {
   RxBool isLoading = true.obs;
-
   RxBool isEdit = false.obs;
+
+  final RxString _username = ''.obs;
+  final RxString _password = ''.obs;
+  final RxString _foto = ''.obs;
+
+  String get username =>
+      _username.value.isEmpty ? 'Klik untuk ubah' : _username.value;
+  String get password =>
+      _password.value.isEmpty ? 'Klik untuk ubah' : _password.value;
+
+  late final UserService _userService;
 
   Rx<UserModel?> agen = Get.find<AgenController>().user.obs;
 
   @override
   void onInit() {
+    _userService = UserService();
+
     isLoading.value = false;
     super.onInit();
+  }
+
+  void updateAgen() async {
+    isLoading.value = true;
+
+    ApiResponseModel res = await _userService.updateAgen(
+      id: agen.value!.id,
+      username: _username.value,
+      password: _password.value,
+      foto: _foto.value,
+    );
+
+    showSnackbar(res.message, res.error);
+
+    try {
+      agen.value = UserModel.fromJson(res.data);
+    } catch (e) {
+      print(e);
+    }
+
+    isLoading.value = false;
+    isEdit.value = false;
+
+    _username.value = '';
+    _password.value = '';
+    _foto.value = '';
   }
 
   void toggleEdit() {
@@ -26,9 +66,7 @@ class PengaturanController extends GetxController {
           textConfirm: "Oke",
           textCancel: "Batal",
           onConfirm: () {
-            isLoading.value = true;
-
-            // isEdit.value = false;
+            updateAgen();
             Get.back();
           },
           onCancel: () {
@@ -51,10 +89,10 @@ class PengaturanController extends GetxController {
       onConfirm: () {
         switch (title.toLowerCase()) {
           case 'username':
-            agen.value!.username = _textEditingController.text;
+            _username.value = _textEditingController.text;
             break;
           case 'password':
-            agen.value!.password = _textEditingController.text;
+            _password.value = _textEditingController.text;
             break;
           default:
         }
@@ -66,6 +104,19 @@ class PengaturanController extends GetxController {
         controller: _textEditingController,
         hintText: title,
       ),
+    );
+  }
+
+  void showSnackbar(String text, [bool error = false]) {
+    Get.snackbar(
+      'Informasi',
+      text,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: error ? dangerColor : secondaryColor,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: EdgeInsets.all(10),
+      snackStyle: SnackStyle.FLOATING,
     );
   }
 }

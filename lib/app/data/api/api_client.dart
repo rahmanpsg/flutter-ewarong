@@ -1,12 +1,12 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:e_warong/app/data/models/api_response_model.dart';
-import 'package:http/http.dart' show Client;
 
 class ApiClient {
-  final Client _client = Client();
-
-  final _baseUrl = 'http://10.0.2.2:3000/api';
+  Dio dio = Dio(BaseOptions(
+    baseUrl: 'http://localhost:3000/api',
+    connectTimeout: 10000, //10 seconds
+    receiveTimeout: 10000,
+  ));
 
   final Map<String, String> _headers = {
     'Content-Type': 'application/json',
@@ -15,39 +15,68 @@ class ApiClient {
   Future<ApiResponseModel> getData(String endpoint,
       {Map<String, dynamic>? headers}) async {
     try {
-      final response = await _client.get(
-        Uri.parse(_baseUrl + endpoint),
-        headers: {...headers ?? _headers},
-      );
+      final response = await dio.get(endpoint,
+          options: Options(headers: headers ?? _headers));
 
-      return ApiResponseModel.fromJson(json.decode(response.body));
-    } catch (e) {
+      return ApiResponseModel.fromJson(response.data);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.response) {
+        return ApiResponseModel.fromJson(e.response?.data);
+      }
+
       return ApiResponseModel(
         error: true,
-        message: e.toString(),
+        message: 'Terjadi masalah yang tidak diketahui',
       );
-    } finally {
-      _client.close();
     }
   }
 
   Future<ApiResponseModel> postData(String endpoint, dynamic body,
       {Map<String, dynamic>? headers}) async {
     try {
-      final response = await _client.post(
-        Uri.parse(_baseUrl + endpoint),
-        headers: _headers,
-        body: jsonEncode(body),
+      final response = await dio.post(
+        endpoint,
+        data: body,
+        options: Options(
+          headers: {...headers ?? _headers},
+        ),
       );
 
-      return ApiResponseModel.fromJson(json.decode(response.body));
-    } catch (e) {
+      return ApiResponseModel.fromJson(response.data);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.response) {
+        return ApiResponseModel.fromJson(e.response?.data);
+      }
+
       return ApiResponseModel(
         error: true,
-        message: e.toString(),
+        message: 'Terjadi masalah yang tidak diketahui',
       );
-    } finally {
-      _client.close();
+    }
+  }
+
+  Future<ApiResponseModel> putData(String endpoint, dynamic body,
+      {Map<String, dynamic>? headers}) async {
+    try {
+      final response = await dio.put(
+        endpoint,
+        data: body,
+        options: Options(
+          headers: {...headers ?? _headers},
+        ),
+      );
+
+      return ApiResponseModel.fromJson(response.data);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.response) {
+        print(e.response);
+        return ApiResponseModel.fromJson(e.response?.data);
+      }
+
+      return ApiResponseModel(
+        error: true,
+        message: 'Terjadi masalah yang tidak diketahui',
+      );
     }
   }
 }

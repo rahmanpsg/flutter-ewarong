@@ -38,14 +38,17 @@ class LoginAgen extends GetView<AuthController> {
             obscureText: true,
           ),
           const SizedBox(height: 16),
-          CustomSubmitButton(
-            icon: Icon(
-              Icons.login,
-              color: Colors.white,
-            ),
-            text: "Masuk",
-            onSubmit: () => controller.login('agen'),
-          ),
+          Obx(() {
+            return CustomSubmitButton(
+              icon: Icon(
+                Icons.login,
+                color: Colors.white,
+              ),
+              text: "Masuk",
+              onSubmit: () => controller.login('agen'),
+              isLoading: controller.isLoading.value,
+            );
+          }),
           const SizedBox(height: 8),
           Row(
             children: [
@@ -53,10 +56,6 @@ class LoginAgen extends GetView<AuthController> {
               GestureDetector(
                 onTap: () {
                   Get.toNamed(Routes.REGISTER);
-                  // Get.bottomSheet(
-                  //   RegisterAgen(),
-                  //   isScrollControlled: true,
-                  // );
                 },
                 child: Text(
                   "Daftar",

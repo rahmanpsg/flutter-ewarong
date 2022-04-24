@@ -33,7 +33,7 @@ class PesananModel {
       symbol: 'Rp. ',
       decimalDigits: 0,
     );
-    return currencyFormatter.format(int.parse(sembako!.harga) * jumlah!);
+    return currencyFormatter.format(sembako!.harga! * jumlah!);
   }
 
   String get statusPesanan {

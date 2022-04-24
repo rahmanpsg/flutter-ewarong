@@ -7,6 +7,7 @@ class CustomSubmitButton extends StatelessWidget {
   final String text;
   final Color? color;
   final Function onSubmit;
+  final bool isLoading;
 
   const CustomSubmitButton({
     Key? key,
@@ -14,12 +15,13 @@ class CustomSubmitButton extends StatelessWidget {
     this.color = secondaryColor,
     required this.text,
     required this.onSubmit,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: color,
+      color: isLoading ? Colors.grey[300] : color,
       child: InkWell(
         onTap: () => onSubmit(),
         splashColor: Colors.white,
@@ -35,15 +37,17 @@ class CustomSubmitButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                if (icon != null) icon!,
-                if (icon != null) const SizedBox(width: 8),
-                Text(
-                  text,
-                  style: boldTextStyle.copyWith(
-                    fontSize: 18.0,
-                    color: Colors.white,
+                if (isLoading) CircularProgressIndicator(),
+                if (!isLoading) ...[
+                  if (icon != null) ...[icon!, const SizedBox(width: 8)],
+                  Text(
+                    text,
+                    style: boldTextStyle.copyWith(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
+                ]
               ],
             ),
           ),

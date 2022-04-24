@@ -12,7 +12,7 @@ class ApiResponseModel {
   factory ApiResponseModel.fromJson(Map<String, dynamic> json) {
     return ApiResponseModel(
       error: json['error'] as bool,
-      message: json['message'] as String,
+      message: json['message'] ?? "",
       data: json['data'],
     );
   }
