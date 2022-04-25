@@ -1,22 +1,23 @@
 import 'package:e_warong/app/data/models/sembako_model.dart';
 import 'package:e_warong/app/modules/agen/form_sembako/controllers/form_sembako_controller.dart';
-import 'package:e_warong/app/modules/agen/stok_sembako/controllers/stok_sembako_controller.dart';
+import 'package:e_warong/app/modules/agen/sembako/controllers/sembako_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:e_warong/app/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
-class StokSembakoView extends GetView<StokSembakoController> {
-  const StokSembakoView({Key? key}) : super(key: key);
+class SembakoView extends GetView<SembakoController> {
+  const SembakoView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.add,
+          LineIcons.plus,
           color: Colors.white,
         ),
         onPressed: () {
@@ -76,7 +77,7 @@ class StokSembakoView extends GetView<StokSembakoController> {
                                   Text('Stok: ${sembako.stok}'),
                                 ],
                               ),
-                              trailing: Icon(Icons.keyboard_arrow_right),
+                              trailing: Icon(LineIcons.angleRight),
                               onTap: () => Get.toNamed(
                                 Routes.FORM_SEMBAKO,
                                 arguments: FormSembakoArguments(

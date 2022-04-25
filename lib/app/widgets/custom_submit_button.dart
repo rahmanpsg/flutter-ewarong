@@ -23,7 +23,7 @@ class CustomSubmitButton extends StatelessWidget {
     return Material(
       color: isLoading ? Colors.grey[300] : color,
       child: InkWell(
-        onTap: () => onSubmit(),
+        onTap: () => isLoading ? null : onSubmit(),
         splashColor: Colors.white,
         child: Container(
           decoration: BoxDecoration(
@@ -37,7 +37,12 @@ class CustomSubmitButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                if (isLoading) CircularProgressIndicator(),
+                if (isLoading)
+                  SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: CircularProgressIndicator(),
+                  ),
                 if (!isLoading) ...[
                   if (icon != null) ...[icon!, const SizedBox(width: 8)],
                   Text(

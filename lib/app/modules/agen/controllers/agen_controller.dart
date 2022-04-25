@@ -13,8 +13,6 @@ class AgenController extends GetxController {
       user = Get.arguments as UserModel;
     }
 
-    print(user.toString());
-
     super.onInit();
   }
 

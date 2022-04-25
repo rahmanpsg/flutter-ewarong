@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:e_warong/app/data/api/api_client.dart';
 
 import 'package:e_warong/app/data/models/sembako_model.dart';
@@ -16,6 +17,27 @@ class SembakoService {
       }
 
       return _listSembako;
+    }
+
+    throw response;
+  }
+
+  Future<SembakoModel> post(String idAgen, SembakoModel sembako) async {
+    final response =
+        await _apiClient.postData('/sembako/$idAgen', sembako.toJson());
+
+    if (!response.error) {
+      return SembakoModel.fromJson(response.data);
+    }
+
+    throw response;
+  }
+
+  Future<SembakoModel> put(String id, SembakoModel sembako) async {
+    final response = await _apiClient.putData('/sembako/$id', sembako.toJson());
+
+    if (!response.error) {
+      return SembakoModel.fromJson(response.data);
     }
 
     throw response;

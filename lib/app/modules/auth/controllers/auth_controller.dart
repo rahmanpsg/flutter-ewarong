@@ -68,7 +68,7 @@ class AuthController extends GetxController {
         }
       }
     } on ApiResponseModel catch (res) {
-      showSnackbar(res.message);
+      showDangerSnackbar(res.message);
     }
 
     isLoading.value = false;
@@ -86,13 +86,13 @@ class AuthController extends GetxController {
   bool validateFormLogin(String role) {
     if (role == 'masyarakat') {
       if (kpmController.text.isEmpty || passMasyarakatController.text.isEmpty) {
-        showSnackbar('Nomor KPM dan Password tidak boleh kosong');
+        showDangerSnackbar('Nomor KPM dan Password tidak boleh kosong');
 
         return false;
       }
     } else if (role == 'agen') {
       if (usernameController.text.isEmpty || passAgenController.text.isEmpty) {
-        showSnackbar('Username dan Password tidak boleh kosong');
+        showDangerSnackbar('Username dan Password tidak boleh kosong');
 
         return false;
       }
@@ -101,7 +101,7 @@ class AuthController extends GetxController {
     return true;
   }
 
-  void showSnackbar(String text) {
+  void showDangerSnackbar(String text) {
     Get.snackbar(
       'Informasi',
       text,

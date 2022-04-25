@@ -37,10 +37,6 @@ class LoginUser extends GetView<AuthController> {
           ),
           const SizedBox(height: 16),
           CustomSubmitButton(
-            icon: Icon(
-              Icons.login,
-              color: Colors.white,
-            ),
             text: "Masuk",
             onSubmit: () => controller.login('masyarakat'),
           )

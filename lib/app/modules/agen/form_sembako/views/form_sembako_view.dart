@@ -5,6 +5,7 @@ import 'package:e_warong/app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../controllers/form_sembako_controller.dart';
 
@@ -59,81 +60,88 @@ class FormSembakoView extends GetView<FormSembakoController> {
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  color: Colors.grey[300],
-                  child: controller.sembako.foto != null
-                      ? Stack(
-                          children: [
-                            Image.network(
-                              controller.sembako.foto!,
-                              fit: BoxFit.cover,
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
-                                    size: 50,
-                                  ),
-                                  Text(
-                                    "Ubah Gambar",
-                                    style: boldTextStyle.copyWith(
-                                      color: Colors.white,
-                                      shadows: <Shadow>[
-                                        Shadow(
-                                          offset: Offset(1, 1),
-                                          blurRadius: 3.0,
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                        ),
-                                        Shadow(
-                                          offset: Offset(1, 1),
-                                          blurRadius: 8.0,
-                                          color: Color.fromARGB(125, 0, 0, 255),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
+              GestureDetector(
+                onTap: controller.imagePicker,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.grey[300],
+                    child: controller.sembako.foto != null
+                        ? Stack(
+                            children: [
+                              Image.network(
+                                controller.sembako.foto!,
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.image,
-                              color: primaryColor,
-                              size: 50,
-                            ),
-                            const Text(
-                              "Pilih Gambar",
-                              style: boldTextStyle,
-                            ),
-                          ],
-                        ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                      size: 50,
+                                    ),
+                                    Text(
+                                      "Ubah Gambar",
+                                      style: boldTextStyle.copyWith(
+                                        color: Colors.white,
+                                        shadows: <Shadow>[
+                                          Shadow(
+                                            offset: Offset(1, 1),
+                                            blurRadius: 3.0,
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                          ),
+                                          Shadow(
+                                            offset: Offset(1, 1),
+                                            blurRadius: 8.0,
+                                            color:
+                                                Color.fromARGB(125, 0, 0, 255),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.image,
+                                color: primaryColor,
+                                size: 50,
+                              ),
+                              const Text(
+                                "Pilih Gambar",
+                                style: boldTextStyle,
+                              ),
+                            ],
+                          ),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
-              CustomSubmitButton(
-                icon: Icon(
-                  controller.formType == FormType.add
-                      ? Icons.library_add
-                      : Icons.edit_outlined,
-                  color: Colors.white,
-                ),
-                text: controller.formType == FormType.add ? "Tambah" : "Ubah",
-                onSubmit: () => controller.formType == FormType.add
-                    ? controller.addSembako()
-                    : controller.editSembako(),
-              ),
+              Obx(() {
+                return CustomSubmitButton(
+                  isLoading: controller.isLoading.value,
+                  icon: Icon(
+                    controller.formType == FormType.add
+                        ? LineIcons.plusCircle
+                        : LineIcons.edit,
+                    color: Colors.white,
+                  ),
+                  text: controller.formType == FormType.add ? "Tambah" : "Ubah",
+                  onSubmit: () => controller.formType == FormType.add
+                      ? controller.addSembako()
+                      : controller.editSembako(),
+                );
+              }),
             ],
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:e_warong/app/modules/auth/controllers/auth_controller.dart';
-import 'package:e_warong/app/modules/auth/views/register_agen.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
@@ -40,10 +39,6 @@ class LoginAgen extends GetView<AuthController> {
           const SizedBox(height: 16),
           Obx(() {
             return CustomSubmitButton(
-              icon: Icon(
-                Icons.login,
-                color: Colors.white,
-              ),
               text: "Masuk",
               onSubmit: () => controller.login('agen'),
               isLoading: controller.isLoading.value,

@@ -71,10 +71,6 @@ class RegisterView extends GetView<RegisterController> {
             ),
             const SizedBox(height: 16),
             CustomSubmitButton(
-              icon: Icon(
-                Icons.app_registration,
-                color: Colors.white,
-              ),
               text: "Daftar",
               onSubmit: controller.register,
             ),
