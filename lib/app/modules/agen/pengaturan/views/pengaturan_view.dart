@@ -1,4 +1,3 @@
-import 'package:e_warong/app/modules/auth/controllers/auth_controller.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:e_warong/app/widgets/custom_image.dart';
@@ -10,7 +9,6 @@ import 'package:get/get.dart';
 import '../controllers/pengaturan_controller.dart';
 
 class PengaturanView extends GetView<PengaturanController> {
-  final AuthController _authController = Get.put(AuthController());
   final TextStyle textStyle = boldTextStyle.copyWith(color: primaryColor);
 
   final TextStyle textEditStyle = boldTextStyle.copyWith(
@@ -171,7 +169,7 @@ class PengaturanView extends GetView<PengaturanController> {
                     color: Colors.white,
                   ),
                   text: 'Keluar',
-                  onSubmit: _authController.logout,
+                  onSubmit: controller.logout,
                 ),
               ),
             ),

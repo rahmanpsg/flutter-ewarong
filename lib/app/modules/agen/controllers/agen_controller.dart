@@ -2,8 +2,6 @@ import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:get/get.dart';
 
 class AgenController extends GetxController {
-  AgenController(this.user);
-
   UserModel? user;
   RxInt tabIndexSelected = 0.obs;
 
@@ -14,6 +12,12 @@ class AgenController extends GetxController {
     }
 
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<AgenController>();
+    super.dispose();
   }
 
   void changePage(int index) {

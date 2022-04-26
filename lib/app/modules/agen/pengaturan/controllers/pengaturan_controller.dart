@@ -2,10 +2,12 @@ import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/user_service.dart';
 import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
+import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PengaturanController extends GetxController {
   RxBool isLoading = true.obs;
@@ -118,5 +120,10 @@ class PengaturanController extends GetxController {
       margin: EdgeInsets.all(10),
       snackStyle: SnackStyle.FLOATING,
     );
+  }
+
+  void logout() {
+    GetStorage().erase();
+    Get.offNamed(Routes.AUTH);
   }
 }

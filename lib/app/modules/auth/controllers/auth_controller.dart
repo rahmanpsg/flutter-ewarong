@@ -34,14 +34,16 @@ class AuthController extends GetxController {
   }
 
   @override
-  void onClose() {
+  void dispose() {
     kpmController.dispose();
     passMasyarakatController.dispose();
 
     usernameController.dispose();
     passAgenController.dispose();
 
-    super.onClose();
+    Get.delete<AuthController>();
+
+    super.dispose();
   }
 
   void login(String role) async {
@@ -72,11 +74,6 @@ class AuthController extends GetxController {
     }
 
     isLoading.value = false;
-  }
-
-  void logout() {
-    GetStorage().erase();
-    Get.offNamed(Routes.AUTH);
   }
 
   void register() {

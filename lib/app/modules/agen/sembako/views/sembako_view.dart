@@ -60,34 +60,39 @@ class SembakoView extends GetView<SembakoController> {
                             ],
                           ),
                         )
-                      : ListView.builder(
-                          itemCount: controller.sembakoList.length,
-                          itemBuilder: ((context, index) {
-                            SembakoModel sembako =
-                                controller.sembakoList[index];
+                      : controller.sembakoList.isEmpty
+                          ? Center(
+                              child: Text('Tidak ada data sembako'),
+                            )
+                          : ListView.builder(
+                              itemCount: controller.sembakoList.length,
+                              itemBuilder: ((context, index) {
+                                SembakoModel sembako =
+                                    controller.sembakoList[index];
 
-                            return ListTile(
-                              isThreeLine: true,
-                              leading: CustomImage(foto: sembako.foto),
-                              title: Text(sembako.nama!),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Harga: ${sembako.hargaFormat}'),
-                                  Text('Stok: ${sembako.stok}'),
-                                ],
-                              ),
-                              trailing: Icon(LineIcons.angleRight),
-                              onTap: () => Get.toNamed(
-                                Routes.FORM_SEMBAKO,
-                                arguments: FormSembakoArguments(
-                                  formType: FormType.edit,
-                                  sembako: sembako,
-                                ),
-                              ),
+                                return ListTile(
+                                  isThreeLine: true,
+                                  leading: CustomImage(foto: sembako.fotoUrl),
+                                  title: Text(sembako.nama!),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Harga: ${sembako.hargaFormat}'),
+                                      Text('Stok: ${sembako.stok}'),
+                                    ],
+                                  ),
+                                  trailing: Icon(LineIcons.angleRight),
+                                  onTap: () => Get.toNamed(
+                                    Routes.FORM_SEMBAKO,
+                                    arguments: FormSembakoArguments(
+                                      formType: FormType.edit,
+                                      sembako: sembako,
+                                    ),
+                                  ),
+                                );
+                              }),
                             );
-                          }),
-                        );
             }),
           ),
         ],

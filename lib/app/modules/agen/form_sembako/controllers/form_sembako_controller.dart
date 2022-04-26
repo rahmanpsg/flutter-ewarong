@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/sembako_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
@@ -24,9 +27,11 @@ class FormSembakoController extends GetxController {
 
   late final SembakoService _sembakoService;
 
-  UserModel? agen = Get.find<AgenController>().user;
-
   late final ImagePicker _picker;
+  XFile? image;
+  RxString imagePath = ''.obs;
+
+  UserModel? agen = Get.find<AgenController>().user;
 
   @override
   void onInit() {
@@ -100,17 +105,22 @@ class FormSembakoController extends GetxController {
       sembako.nama = namaController.text;
       sembako.harga = int.parse(hargaController.text);
       sembako.stok = int.parse(stokController.text);
+      if (image != null) {
+        sembako.file = File(imagePath.value);
+      }
     } catch (e) {
       print(e);
     }
   }
 
   void imagePicker() async {
-    print('img');
+    try {
+      image = await _picker.pickImage(source: ImageSource.gallery);
 
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-    print(image);
+      imagePath.value = image!.path;
+    } catch (e) {
+      print(e);
+    }
   }
 
   void showSnackbar(String text, [bool error = false]) {

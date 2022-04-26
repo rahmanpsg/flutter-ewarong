@@ -23,8 +23,16 @@ class SembakoService {
   }
 
   Future<SembakoModel> post(String idAgen, SembakoModel sembako) async {
-    final response =
-        await _apiClient.postData('/sembako/$idAgen', sembako.toJson());
+    FormData _formData = FormData.fromMap(sembako.toJson());
+
+    if (sembako.file != null) {
+      MultipartFile _file = await MultipartFile.fromFile(sembako.file!.path,
+          filename: DateTime.now().millisecondsSinceEpoch.toString());
+
+      _formData.files.add(MapEntry('file', _file));
+    }
+
+    final response = await _apiClient.postData('/sembako/$idAgen', _formData);
 
     if (!response.error) {
       return SembakoModel.fromJson(response.data);
@@ -34,7 +42,16 @@ class SembakoService {
   }
 
   Future<SembakoModel> put(String id, SembakoModel sembako) async {
-    final response = await _apiClient.putData('/sembako/$id', sembako.toJson());
+    FormData _formData = FormData.fromMap(sembako.toJson());
+
+    if (sembako.file != null) {
+      MultipartFile _file = await MultipartFile.fromFile(sembako.file!.path,
+          filename: DateTime.now().millisecondsSinceEpoch.toString());
+
+      _formData.files.add(MapEntry('file', _file));
+    }
+
+    final response = await _apiClient.putData('/sembako/$id', _formData);
 
     if (!response.error) {
       return SembakoModel.fromJson(response.data);

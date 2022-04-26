@@ -1,16 +1,22 @@
+import 'dart:io';
+
 import 'package:intl/intl.dart';
 
 class SembakoModel {
   String? id;
   String? nama;
-  String? foto;
+  String? fotoUrl;
   int? harga;
   int? stok;
+
+  /// base64
+  File? file;
 
   SembakoModel({
     this.id,
     this.nama,
-    this.foto,
+    this.fotoUrl,
+    this.file,
     this.harga,
     this.stok,
   });
@@ -27,7 +33,7 @@ class SembakoModel {
   factory SembakoModel.fromJson(Map<String, dynamic> json) => SembakoModel(
         id: json["id"] ?? json["_id"],
         nama: json["nama"],
-        foto: json["foto"],
+        fotoUrl: json["fotoUrl"],
         harga: json["harga"],
         stok: json["stok"],
       );
@@ -35,7 +41,7 @@ class SembakoModel {
   Map<String, dynamic> toJson() => {
         "id": id,
         "nama": nama,
-        "foto": foto,
+        "fotoUrl": fotoUrl,
         "harga": harga,
         "stok": stok,
       };
