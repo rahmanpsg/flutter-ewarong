@@ -36,10 +36,13 @@ class LoginUser extends GetView<AuthController> {
             obscureText: true,
           ),
           const SizedBox(height: 16),
-          CustomSubmitButton(
-            text: "Masuk",
-            onSubmit: () => controller.login('masyarakat'),
-          )
+          Obx(() {
+            return CustomSubmitButton(
+              text: "Masuk",
+              onSubmit: () => controller.login('masyarakat'),
+              isLoading: controller.isLoading.value,
+            );
+          })
         ],
       ),
     );

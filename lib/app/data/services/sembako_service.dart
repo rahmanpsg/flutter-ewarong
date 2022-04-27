@@ -7,7 +7,7 @@ class SembakoService {
   final ApiClient _apiClient = ApiClient();
 
   Future<List<SembakoModel>> getAll(String idAgen) async {
-    final response = await _apiClient.getData('/sembako/$idAgen');
+    final response = await _apiClient.getData('/sembako/agen/$idAgen');
 
     if (!response.error) {
       List<SembakoModel> _listSembako = [];

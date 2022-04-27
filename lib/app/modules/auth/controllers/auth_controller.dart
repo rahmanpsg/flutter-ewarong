@@ -64,13 +64,13 @@ class AuthController extends GetxController {
 
       if (_user != null) {
         if (_user.role == 'masyarakat') {
-          Get.offNamed(Routes.AGEN, arguments: _user);
+          Get.offAllNamed(Routes.AGEN, arguments: _user);
         } else if (_user.role == 'agen') {
-          Get.offNamed(Routes.AGEN, arguments: _user);
+          Get.offAllNamed(Routes.AGEN, arguments: _user);
         }
       }
     } on ApiResponseModel catch (res) {
-      showDangerSnackbar(res.message);
+      showDangerSnackbar(res.errorMessage);
     }
 
     isLoading.value = false;

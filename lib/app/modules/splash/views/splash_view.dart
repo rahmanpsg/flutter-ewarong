@@ -39,6 +39,8 @@ class Landing extends GetView<SplashController> {
     WidgetsBinding.instance?.addPostFrameCallback(
       controller.cekLogin,
     );
-    return Container();
+    return Container(
+      color: Colors.transparent,
+    );
   }
 }
