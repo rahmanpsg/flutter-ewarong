@@ -1,5 +1,5 @@
 import 'package:e_warong/app/modules/auth/views/login_agen.dart';
-import 'package:e_warong/app/modules/auth/views/login_user.dart';
+import 'package:e_warong/app/modules/auth/views/login_masyarakat.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class AuthView extends GetView<AuthController> {
                     Expanded(
                       child: TabBarView(
                         children: <Widget>[
-                          LoginUser(),
+                          LoginMasyarakat(),
                           LoginAgen(),
                         ],
                       ),

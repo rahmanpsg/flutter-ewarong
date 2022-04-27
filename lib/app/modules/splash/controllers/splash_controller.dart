@@ -10,9 +10,9 @@ class SplashController extends GetxController {
       UserModel _user = await AuthService().verifyToken();
 
       if (_user.role == 'masyarakat') {
-        Get.toNamed(Routes.AGEN, arguments: _user);
+        Get.offAllNamed(Routes.MASYARAKAT, arguments: _user);
       } else if (_user.role == 'agen') {
-        Get.toNamed(Routes.AGEN, arguments: _user);
+        Get.offAllNamed(Routes.AGEN, arguments: _user);
       }
       return;
     } on ApiResponseModel catch (res) {

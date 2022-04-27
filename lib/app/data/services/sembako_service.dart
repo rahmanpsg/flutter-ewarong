@@ -6,7 +6,23 @@ import 'package:e_warong/app/data/models/sembako_model.dart';
 class SembakoService {
   final ApiClient _apiClient = ApiClient();
 
-  Future<List<SembakoModel>> getAll(String idAgen) async {
+  Future<List<SembakoModel>> getAll() async {
+    final response = await _apiClient.getData('/sembako');
+
+    if (!response.error) {
+      List<SembakoModel> _listSembako = [];
+
+      for (var sembako in response.data) {
+        _listSembako.add(SembakoModel.fromJson(sembako));
+      }
+
+      return _listSembako;
+    }
+
+    throw response;
+  }
+
+  Future<List<SembakoModel>> getAllAgen(String idAgen) async {
     final response = await _apiClient.getData('/sembako/agen/$idAgen');
 
     if (!response.error) {

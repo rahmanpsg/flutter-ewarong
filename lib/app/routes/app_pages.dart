@@ -10,6 +10,8 @@ import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/register/bindings/register_binding.dart';
 import '../modules/auth/register/views/register_view.dart';
 import '../modules/auth/views/auth_view.dart';
+import '../modules/masyarakat/bindings/masyarakat_binding.dart';
+import '../modules/masyarakat/views/masyarakat_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -55,6 +57,11 @@ class AppPages {
           binding: FormSembakoBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.MASYARAKAT,
+      page: () => MasyarakatView(),
+      binding: MasyarakatBinding(),
     ),
   ];
 }

@@ -1,7 +1,7 @@
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:get/get.dart';
 
-class AgenController extends GetxController {
+class MasyarakatController extends GetxController {
   UserModel? user;
   RxInt tabIndexSelected = 0.obs;
 

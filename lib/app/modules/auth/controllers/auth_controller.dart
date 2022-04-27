@@ -64,7 +64,7 @@ class AuthController extends GetxController {
 
       if (_user != null) {
         if (_user.role == 'masyarakat') {
-          Get.offAllNamed(Routes.AGEN, arguments: _user);
+          Get.offAllNamed(Routes.MASYARAKAT, arguments: _user);
         } else if (_user.role == 'agen') {
           Get.offAllNamed(Routes.AGEN, arguments: _user);
         }

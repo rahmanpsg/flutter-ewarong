@@ -5,8 +5,8 @@ import 'package:e_warong/app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginUser extends GetView<AuthController> {
-  const LoginUser({Key? key}) : super(key: key);
+class LoginMasyarakat extends GetView<AuthController> {
+  const LoginMasyarakat({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

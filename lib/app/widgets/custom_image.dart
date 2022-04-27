@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class CustomImage extends StatelessWidget {
   final String? foto;
@@ -9,7 +10,7 @@ class CustomImage extends StatelessWidget {
       {Key? key,
       this.foto,
       this.size = 100,
-      this.empty = const Icon(Icons.image)})
+      this.empty = const Icon(LineIcons.image)})
       : super(key: key);
 
   @override
@@ -17,8 +18,8 @@ class CustomImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        width: size,
-        height: size,
+        // width: size,
+        // height: size,
         color: Colors.grey[300],
         child: foto != null
             ? Image.network(
