@@ -1,11 +1,10 @@
 import 'package:e_warong/app/data/models/pesanan_model.dart';
-import 'package:e_warong/app/modules/agen/detail_pesanan/controllers/detail_pesanan_controller.dart';
-import 'package:e_warong/app/modules/agen/pesanan/controllers/pesanan_controller.dart';
-import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+import '../controllers/pesanan_controller.dart';
 
 class PesananList extends GetView<PesananController> {
   final List<PesananModel> pesananList;
@@ -44,12 +43,7 @@ class PesananList extends GetView<PesananController> {
                       ],
                     ),
                     trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      Get.toNamed(
-                        Routes.DETAIL_PESANAN,
-                        arguments: DetailPesananArguments(pesanan: pesanan),
-                      );
-                    },
+                    onTap: () => controller.toDetailPesanan(pesanan),
                   );
                 },
               );

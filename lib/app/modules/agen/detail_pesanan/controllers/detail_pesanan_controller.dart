@@ -1,7 +1,8 @@
 import 'package:e_warong/app/data/models/pesanan_model.dart';
-import 'package:e_warong/app/modules/agen/pesanan/controllers/pesanan_controller.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:get/get.dart';
+
+import '../../../common/pesanan/controllers/pesanan_controller.dart';
 
 class DetailPesananController extends GetxController {
   late final Rx<PesananModel> pesanan = PesananModel().obs;

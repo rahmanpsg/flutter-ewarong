@@ -3,6 +3,8 @@ import 'package:e_warong/app/data/models/sembako_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/sembako_service.dart';
 import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
+import 'package:e_warong/app/modules/masyarakat/detail_sembako/controllers/detail_sembako_controller.dart';
+import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,5 +39,10 @@ class SembakoController extends GetxController {
     }
 
     isLoading.value = false;
+  }
+
+  void toDetailSembako(SembakoModel sembako) {
+    Get.toNamed(Routes.DETAIL_SEMBAKO,
+        arguments: DetailSembakoArguments(sembako: sembako));
   }
 }

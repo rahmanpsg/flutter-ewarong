@@ -27,7 +27,7 @@ class SembakoController extends GetxController {
   void getAllSembako() async {
     isLoading.value = true;
     try {
-      sembakoList.value = await _sembakoService.getAllAgen(agen!.id);
+      sembakoList.value = await _sembakoService.getAllAgen(agen!.id!);
     } on ApiResponseModel catch (res) {
       isError.value = true;
       errorMessage.value = res.message;

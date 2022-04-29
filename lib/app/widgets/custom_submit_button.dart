@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomSubmitButton extends StatelessWidget {
   final Widget? icon;
-  final String text;
+  final String? text;
   final Color? color;
   final Function onSubmit;
   final bool isLoading;
@@ -13,7 +13,7 @@ class CustomSubmitButton extends StatelessWidget {
     Key? key,
     this.icon,
     this.color = secondaryColor,
-    required this.text,
+    this.text,
     required this.onSubmit,
     this.isLoading = false,
   }) : super(key: key);
@@ -44,14 +44,16 @@ class CustomSubmitButton extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                 if (!isLoading) ...[
-                  if (icon != null) ...[icon!, const SizedBox(width: 8)],
-                  Text(
-                    text,
-                    style: boldTextStyle.copyWith(
-                      fontSize: 18.0,
-                      color: Colors.white,
+                  if (icon != null) icon!,
+                  if (icon != null && text != null) const SizedBox(width: 8),
+                  if (text != null)
+                    Text(
+                      text!,
+                      style: boldTextStyle.copyWith(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
                 ]
               ],
             ),

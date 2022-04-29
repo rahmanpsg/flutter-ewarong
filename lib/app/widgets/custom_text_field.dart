@@ -29,6 +29,8 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       controller: controller,
       decoration: InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
         hintStyle: primaryTextStyle,
         border: InputBorder.none,
         hintText: hintText,

@@ -13,6 +13,7 @@ class SembakoService {
       List<SembakoModel> _listSembako = [];
 
       for (var sembako in response.data) {
+        print(SembakoModel.fromJson(sembako));
         _listSembako.add(SembakoModel.fromJson(sembako));
       }
 

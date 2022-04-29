@@ -9,33 +9,39 @@ import '../controllers/laporan_controller.dart';
 class LaporanView extends GetView<LaporanController> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: controller.bulanList.length,
-      initialIndex: controller.tabIndex,
-      child: Column(
-        children: <Widget>[
-          TabBar(
-            isScrollable: true,
-            labelColor: primaryColor,
-            indicatorColor: primaryColor,
-            tabs: controller.bulanList
-                .map((bulan) => Tab(
-                      text: bulan,
-                    ))
-                .toList(),
-          ),
-          Expanded(
-            child: TabBarView(
-              children: controller.bulanList
-                  .map(
-                    (bulan) => LaporanList(
-                      bulan: controller.bulanList.indexOf(bulan),
-                    ),
-                  )
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Laporan"),
+        centerTitle: true,
+      ),
+      body: DefaultTabController(
+        length: controller.bulanList.length,
+        initialIndex: controller.tabIndex,
+        child: Column(
+          children: <Widget>[
+            TabBar(
+              isScrollable: true,
+              labelColor: primaryColor,
+              indicatorColor: primaryColor,
+              tabs: controller.bulanList
+                  .map((bulan) => Tab(
+                        text: bulan,
+                      ))
                   .toList(),
             ),
-          ),
-        ],
+            Expanded(
+              child: TabBarView(
+                children: controller.bulanList
+                    .map(
+                      (bulan) => LaporanList(
+                        bulan: controller.bulanList.indexOf(bulan),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

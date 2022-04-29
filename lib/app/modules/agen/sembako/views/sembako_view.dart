@@ -15,6 +15,10 @@ class SembakoView extends GetView<SembakoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("E-Warong"),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
           LineIcons.plus,

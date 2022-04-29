@@ -1,6 +1,5 @@
 import 'package:e_warong/app/modules/agen/laporan/views/laporan_view.dart';
 import 'package:e_warong/app/modules/agen/pengaturan/views/pengaturan_view.dart';
-import 'package:e_warong/app/modules/agen/pesanan/views/pesanan_view.dart';
 import 'package:e_warong/app/modules/agen/sembako/views/sembako_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../../common/pesanan/views/pesanan_view.dart';
 import '../controllers/agen_controller.dart';
 
 class AgenView extends GetView<AgenController> {
@@ -16,10 +16,6 @@ class AgenView extends GetView<AgenController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        appBar: AppBar(
-          title: Text("E-Warong"),
-          centerTitle: true,
-        ),
         body: IndexedStack(
           index: controller.tabIndexSelected.value,
           children: [

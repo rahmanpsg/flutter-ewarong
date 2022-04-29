@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:e_warong/app/data/models/api_response_model.dart';
@@ -74,7 +73,7 @@ class FormSembakoController extends GetxController {
 
     try {
       setData();
-      SembakoModel _sembako = await _sembakoService.post(agen!.id, sembako);
+      SembakoModel _sembako = await _sembakoService.post(agen!.id!, sembako);
       sembakoList.add(_sembako);
       Get.back();
     } on ApiResponseModel catch (res) {

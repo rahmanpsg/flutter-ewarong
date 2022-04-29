@@ -48,7 +48,8 @@ class DetailPesananView extends GetView<DetailPesananController> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      controller.pesanan.value.user!.nama,
+                                      controller
+                                          .pesanan.value.masyarakat!.nama!,
                                       style: boldTextStyle.copyWith(
                                           color: primaryColor),
                                     ),

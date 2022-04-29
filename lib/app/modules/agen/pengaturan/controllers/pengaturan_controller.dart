@@ -38,7 +38,7 @@ class PengaturanController extends GetxController {
     isLoading.value = true;
 
     ApiResponseModel res = await _userService.updateAgen(
-      id: agen.value!.id,
+      id: agen.value!.id!,
       username: _username.value,
       password: _password.value,
       foto: _foto.value,

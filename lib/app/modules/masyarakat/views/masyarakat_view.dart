@@ -1,3 +1,4 @@
+import 'package:e_warong/app/modules/masyarakat/profil/views/profil_view.dart';
 import 'package:e_warong/app/modules/masyarakat/sembako/views/sembako_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../../common/pesanan/views/pesanan_view.dart';
 import '../controllers/masyarakat_controller.dart';
 
 class MasyarakatView extends GetView<MasyarakatController> {
@@ -13,17 +15,17 @@ class MasyarakatView extends GetView<MasyarakatController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        appBar: AppBar(
-          title: Text("E-Warong"),
-          centerTitle: true,
-        ),
+        // appBar: AppBar(
+        //   title: Text("E-Warong"),
+        //   centerTitle: true,
+        // ),
         body: IndexedStack(
           index: controller.tabIndexSelected.value,
           children: [
             SembakoView(),
+            PesananView(),
             Container(),
-            Container(),
-            Container(),
+            ProfilView(),
           ],
         ),
         bottomNavigationBar: Container(
@@ -67,8 +69,8 @@ class MasyarakatView extends GetView<MasyarakatController> {
                     text: 'Laporan',
                   ),
                   GButton(
-                    icon: LineIcons.userCog,
-                    text: 'Pengaturan',
+                    icon: LineIcons.user,
+                    text: 'Profil',
                   ),
                 ],
                 selectedIndex: controller.tabIndexSelected.value,

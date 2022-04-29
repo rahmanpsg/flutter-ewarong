@@ -1,36 +1,36 @@
 import 'package:intl/intl.dart';
 
 class UserModel {
-  String id;
-  int nik;
-  String nama;
+  String? id;
+  int? nik;
+  String? nama;
   int? ktm;
   String? foto;
   String? username;
-  String password;
-  String alamat;
-  String telpon;
-  String role;
+  String? password;
+  String? alamat;
+  String? telpon;
+  String? role;
   String? token;
-  String createdAt;
+  String? createdAt;
 
   UserModel({
-    required this.id,
-    required this.nik,
-    required this.nama,
+    this.id,
+    this.nik,
+    this.nama,
     this.foto,
     this.ktm,
     this.username,
-    required this.password,
-    required this.alamat,
-    required this.telpon,
-    required this.role,
+    this.password,
+    this.alamat,
+    this.telpon,
+    this.role,
     this.token,
-    required this.createdAt,
+    this.createdAt,
   });
 
   String get tanggal {
-    return DateFormat('dd-MM-yyyy').format(DateTime.parse(createdAt));
+    return DateFormat('dd-MM-yyyy').format(DateTime.parse(createdAt!));
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(

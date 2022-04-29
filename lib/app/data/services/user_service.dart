@@ -1,8 +1,19 @@
 import 'package:e_warong/app/data/api/api_client.dart';
 import 'package:e_warong/app/data/models/api_response_model.dart';
+import 'package:e_warong/app/data/models/user_model.dart';
 
 class UserService {
   final ApiClient _apiClient = ApiClient();
+
+  Future<UserModel> getUser(String id) async {
+    final response = await _apiClient.getData('/user/$id');
+
+    if (!response.error) {
+      return UserModel.fromJson(response.data);
+    }
+
+    throw response;
+  }
 
   Future<ApiResponseModel> updateAgen({
     required String id,
