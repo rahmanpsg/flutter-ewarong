@@ -8,9 +8,9 @@ abstract class Routes {
   static const REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const AGEN = _Paths.AGEN;
   static const FORM_SEMBAKO = _Paths.AGEN + _Paths.FORM_SEMBAKO;
-  static const DETAIL_PESANAN = _Paths.AGEN + _Paths.DETAIL_PESANAN;
   static const MASYARAKAT = _Paths.MASYARAKAT;
   static const DETAIL_SEMBAKO = _Paths.MASYARAKAT + _Paths.DETAIL_SEMBAKO;
+  static const DETAIL_PESANAN = _Paths.DETAIL_PESANAN;
 }
 
 abstract class _Paths {

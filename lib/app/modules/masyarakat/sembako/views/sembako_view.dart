@@ -1,5 +1,3 @@
-import 'package:e_warong/app/data/models/sembako_model.dart';
-
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:e_warong/app/widgets/custom_card.dart';

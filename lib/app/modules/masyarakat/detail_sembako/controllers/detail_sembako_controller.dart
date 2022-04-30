@@ -9,6 +9,12 @@ import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+class DetailSembakoArguments {
+  final SembakoModel sembako;
+
+  DetailSembakoArguments({required this.sembako});
+}
+
 class DetailSembakoController extends GetxController {
   RxBool isLoading = true.obs;
 
@@ -19,7 +25,10 @@ class DetailSembakoController extends GetxController {
 
   final PesananService _pesananService = PesananService();
 
-  final UserModel? masyarakat = Get.find<MasyarakatController>().user;
+  final UserModel masyarakat = Get.find<MasyarakatController>().user;
+
+  final RxList<PesananModel> pesananList =
+      Get.find<MasyarakatController>().pesananList;
 
   late PesananModel pesanan;
 
@@ -75,12 +84,12 @@ class DetailSembakoController extends GetxController {
   void sendPesanan() async {
     pesanan.jumlah = jumlah.value;
 
-    print(pesanan.toJson());
-
     try {
       PesananModel _pesanan = await _pesananService.post(pesanan);
 
-      print(_pesanan);
+      pesananList.add(_pesanan);
+
+      Get.back();
       showSnackbar('Pesanan berhasil dikirim');
     } on ApiResponseModel catch (res) {
       showSnackbar(res.errorMessage, true);
@@ -99,10 +108,4 @@ class DetailSembakoController extends GetxController {
       snackStyle: SnackStyle.FLOATING,
     );
   }
-}
-
-class DetailSembakoArguments {
-  final SembakoModel sembako;
-
-  DetailSembakoArguments({required this.sembako});
 }

@@ -18,7 +18,7 @@ class SembakoController extends GetxController {
   late final SembakoService _sembakoService;
   late final TextEditingController searchController;
 
-  UserModel? masyarakat = Get.find<MasyarakatController>().user;
+  UserModel masyarakat = Get.find<MasyarakatController>().user;
 
   @override
   void onInit() {

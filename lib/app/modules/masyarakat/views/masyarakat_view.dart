@@ -15,16 +15,11 @@ class MasyarakatView extends GetView<MasyarakatController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        // appBar: AppBar(
-        //   title: Text("E-Warong"),
-        //   centerTitle: true,
-        // ),
         body: IndexedStack(
           index: controller.tabIndexSelected.value,
           children: [
             SembakoView(),
             PesananView(),
-            Container(),
             ProfilView(),
           ],
         ),
@@ -63,10 +58,6 @@ class MasyarakatView extends GetView<MasyarakatController> {
                   GButton(
                     icon: LineIcons.shoppingBag,
                     text: 'Pesanan',
-                  ),
-                  GButton(
-                    icon: LineIcons.calendar,
-                    text: 'Laporan',
                   ),
                   GButton(
                     icon: LineIcons.user,

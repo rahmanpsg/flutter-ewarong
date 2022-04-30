@@ -1,3 +1,4 @@
+import 'package:e_warong/app/data/enums/user_type.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:e_warong/app/widgets/custom_chip.dart';
@@ -6,6 +7,7 @@ import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../controllers/detail_pesanan_controller.dart';
 
@@ -34,35 +36,42 @@ class DetailPesananView extends GetView<DetailPesananController> {
                             child: Row(
                               children: [
                                 CustomImage(
+                                  foto: controller.fotoUrl,
                                   size: 80,
                                   empty: Icon(
-                                    Icons.person,
+                                    LineIcons.userCircle,
                                     color: Colors.grey,
+                                    size: 40,
                                   ),
                                 ),
                                 const SizedBox(
                                   width: 8,
                                 ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      controller
-                                          .pesanan.value.masyarakat!.nama!,
-                                      style: boldTextStyle.copyWith(
-                                          color: primaryColor),
-                                    ),
-                                    Text(
-                                      "Saldo",
-                                      style: primaryTextStyle,
-                                    ),
-                                    Text(
-                                      "Rp. 25.000",
-                                      style: boldTextStyle.copyWith(
-                                          color: primaryColor),
-                                    ),
-                                  ],
+                                SizedBox(
+                                  width: Get.width * .5,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        controller.title,
+                                        style: boldTextStyle.copyWith(
+                                            color: primaryColor),
+                                      ),
+                                      Text(
+                                        controller.subtile.toString(),
+                                        style: primaryTextStyle,
+                                      ),
+                                      if (controller.userType == UserType.agen)
+                                        Text(
+                                          controller.pesanan.value.masyarakat!
+                                              .saldoFormat,
+                                          style: boldTextStyle.copyWith(
+                                              color: primaryColor),
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -85,7 +94,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                               style: boldTextStyle,
                             ),
                             trailing: Text(
-                              controller.pesanan.value.waktuPesanan(),
+                              controller.pesanan.value.waktuPesanan,
                               style: primaryTextStyle,
                             ),
                           ),
@@ -107,7 +116,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                               style: boldTextStyle,
                             ),
                             trailing: Text(
-                              controller.pesanan.value.totalHarga(),
+                              controller.pesanan.value.totalHarga,
                               style: primaryTextStyle,
                             ),
                           ),
@@ -119,11 +128,15 @@ class DetailPesananView extends GetView<DetailPesananController> {
                                 "Status",
                                 style: boldTextStyle,
                               ),
-                              trailing: CustomChip(
-                                label: controller.pesanan.value.statusPesanan,
-                                color: controller.pesanan.value.status == false
-                                    ? dangerColor
-                                    : secondaryColor,
+                              trailing: SizedBox(
+                                width: Get.width * 0.5,
+                                child: CustomChip(
+                                  label: controller.pesanan.value.statusPesanan,
+                                  color:
+                                      controller.pesanan.value.status == false
+                                          ? dangerColor
+                                          : secondaryColor,
+                                ),
                               ),
                             ),
                         ],
@@ -132,30 +145,38 @@ class DetailPesananView extends GetView<DetailPesananController> {
                   ),
                 ),
               ),
-              if (controller.pesanan.value.status == null)
-                Column(
-                  children: [
-                    const SizedBox(height: 8),
-                    CustomSubmitButton(
-                      icon: Icon(
-                        Icons.handshake_rounded,
-                        color: Colors.white,
-                      ),
-                      text: "Terima Pesanan",
-                      onSubmit: () => controller.confirmPesanan(true),
-                    ),
-                    const SizedBox(height: 8),
-                    CustomSubmitButton(
-                      icon: Icon(
-                        Icons.back_hand_rounded,
-                        color: Colors.white,
-                      ),
-                      text: "Tolak Pesanan",
-                      color: dangerColor,
-                      onSubmit: () => controller.confirmPesanan(false),
-                    )
-                  ],
+              if (controller.pesanan.value.selesai != true &&
+                  ((controller.userType == UserType.agen &&
+                          controller.pesanan.value.status == null) ||
+                      (controller.userType == UserType.masyarakat &&
+                          controller.pesanan.value.status == true))) ...[
+                const SizedBox(height: 8),
+                CustomSubmitButton(
+                  icon: Icon(
+                    Icons.handshake_rounded,
+                    color: Colors.white,
+                  ),
+                  text: "Terima Pesanan",
+                  onSubmit: () => controller.confirmPesanan(true),
                 ),
+                const SizedBox(height: 8),
+                if (controller.userType == UserType.agen)
+                  CustomSubmitButton(
+                    icon: Icon(
+                      Icons.back_hand_rounded,
+                      color: Colors.white,
+                    ),
+                    text: "Tolak Pesanan",
+                    color: dangerColor,
+                    onSubmit: () => controller.confirmPesanan(false),
+                  )
+              ],
+              if (controller.isLoading.isTrue)
+                Expanded(
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
             ],
           ),
         );

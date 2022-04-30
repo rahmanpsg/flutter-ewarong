@@ -43,7 +43,7 @@ class PesananView extends GetView<PesananController> {
                       Tab(
                         text: 'Selesai' +
                             (controller.pesananSelesai.isNotEmpty
-                                ? '(${controller.pesananSelesai.length})'
+                                ? ' (${controller.pesananSelesai.length})'
                                 : ''),
                       ),
                     ],

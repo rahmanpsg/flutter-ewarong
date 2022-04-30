@@ -33,8 +33,12 @@ class PesananService {
     throw response;
   }
 
-  Future<PesananModel> put(String id, PesananModel pesanan) async {
-    final response = await _apiClient.putData('/pesanan/$id', pesanan.toJson());
+  Future<PesananModel> konfirmasi(
+      UserType userType, String id, PesananModel pesanan) async {
+    String role = userType == UserType.agen ? 'agen' : 'masyarakat';
+
+    final response = await _apiClient.putData(
+        '/pesanan/konfirmasi/$role/$id', pesanan.toJson());
 
     if (!response.error) {
       return PesananModel.fromJson(response.data);

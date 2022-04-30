@@ -63,7 +63,7 @@ class LaporanList extends GetView<LaporanController> {
                               trailing: CustomChip(
                                 label: controller
                                     .laporanBulan(bulan)!
-                                    .getPendapatan(),
+                                    .pendapatanFormat,
                                 color: dangerColor,
                               ),
                             ),

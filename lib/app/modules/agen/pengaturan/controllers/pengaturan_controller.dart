@@ -22,14 +22,12 @@ class PengaturanController extends GetxController {
   String get password =>
       _password.value.isEmpty ? 'Klik untuk ubah' : _password.value;
 
-  late final UserService _userService;
+  final UserService _userService = UserService();
 
-  Rx<UserModel?> agen = Get.find<AgenController>().user.obs;
+  Rx<UserModel> agen = Get.find<AgenController>().user.obs;
 
   @override
   void onInit() {
-    _userService = UserService();
-
     isLoading.value = false;
     super.onInit();
   }
@@ -38,7 +36,7 @@ class PengaturanController extends GetxController {
     isLoading.value = true;
 
     ApiResponseModel res = await _userService.updateAgen(
-      id: agen.value!.id!,
+      id: agen.value.id!,
       username: _username.value,
       password: _password.value,
       foto: _foto.value,

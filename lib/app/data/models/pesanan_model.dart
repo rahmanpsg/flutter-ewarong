@@ -11,6 +11,7 @@ class PesananModel {
   bool? status;
   bool? selesai;
   DateTime? createdAt;
+  DateTime? updatedAt;
 
   PesananModel({
     this.id,
@@ -21,15 +22,16 @@ class PesananModel {
     this.status,
     this.selesai,
     this.createdAt,
+    this.updatedAt,
   });
 
-  String waktuPesanan() {
+  String get waktuPesanan {
     DateFormat dateFormat = DateFormat("dd MMMM yyyy HH:mm");
 
-    return dateFormat.format(createdAt!);
+    return dateFormat.format(updatedAt!);
   }
 
-  String totalHarga() {
+  String get totalHarga {
     NumberFormat currencyFormatter = NumberFormat.currency(
       locale: 'id',
       symbol: 'Rp. ',
@@ -52,18 +54,24 @@ class PesananModel {
 
   factory PesananModel.fromJson(Map<String, dynamic> json) => PesananModel(
         id: json["id"] ?? json["_id"],
-        // agen: UserModel.fromJson(json["agen"]),
+        agen: json["agen"] == null || json["agen"] is String
+            ? null
+            : UserModel.fromJson(json["agen"]),
         masyarakat: json["masyarakat"] == null || json["masyarakat"] is String
             ? null
             : UserModel.fromJson(json["masyarakat"]),
-
-        sembako: json["sembako"] == null || json["masyarakat"] is String
+        sembako: json["sembako"] == null || json["sembako"] is String
             ? null
             : SembakoModel.fromJson(json["sembako"]),
         jumlah: json["jumlah"],
         status: json["status"],
         selesai: json["selesai"],
-        createdAt: DateTime.parse(json["createdAt"]),
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
       );
 
   Map<String, dynamic> toJson() => {

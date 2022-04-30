@@ -23,6 +23,7 @@ class CustomChip extends StatelessWidget {
       child: Text(
         label,
         style: boldTextStyle.copyWith(color: Colors.white),
+        textAlign: TextAlign.center,
       ),
     );
   }

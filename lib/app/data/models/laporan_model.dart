@@ -15,7 +15,7 @@ class LaporanModel {
 
   String get getTotal => total.toString();
 
-  String getPendapatan() {
+  String get pendapatanFormat {
     NumberFormat currencyFormatter = NumberFormat.currency(
       locale: 'id',
       symbol: 'Rp. ',

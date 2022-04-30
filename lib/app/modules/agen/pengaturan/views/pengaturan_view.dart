@@ -5,6 +5,7 @@ import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../controllers/pengaturan_controller.dart';
 
@@ -43,8 +44,8 @@ class PengaturanView extends GetView<PengaturanController> {
                               size: 100,
                               empty: Icon(
                                 controller.isEdit.isTrue
-                                    ? Icons.edit
-                                    : Icons.person,
+                                    ? LineIcons.edit
+                                    : LineIcons.userCircle,
                                 color: controller.isEdit.isTrue
                                     ? primaryColor
                                     : Colors.grey,
@@ -58,7 +59,7 @@ class PengaturanView extends GetView<PengaturanController> {
                                 style: textStyle,
                               ),
                               trailing: Text(
-                                controller.agen.value!.nama!,
+                                controller.agen.value.nama!,
                                 style: textStyle,
                               ),
                             ),
@@ -67,7 +68,7 @@ class PengaturanView extends GetView<PengaturanController> {
                               enabled: controller.isEdit.isTrue,
                               onTap: () {
                                 controller.showEditDialog('Username',
-                                    controller.agen.value!.username!);
+                                    controller.agen.value.username!);
                               },
                               title: Text(
                                 "Username",
@@ -76,7 +77,7 @@ class PengaturanView extends GetView<PengaturanController> {
                               trailing: Text(
                                 controller.isEdit.isTrue
                                     ? controller.username
-                                    : controller.agen.value!.username!,
+                                    : controller.agen.value.username!,
                                 style: controller.isEdit.isTrue
                                     ? textEditStyle
                                     : textStyle,
@@ -87,7 +88,7 @@ class PengaturanView extends GetView<PengaturanController> {
                               enabled: controller.isEdit.isTrue,
                               onTap: () {
                                 controller.showEditDialog('Password',
-                                    controller.agen.value!.password!);
+                                    controller.agen.value.password!);
                               },
                               title: Text(
                                 "Password",
@@ -109,7 +110,7 @@ class PengaturanView extends GetView<PengaturanController> {
                                 style: textStyle,
                               ),
                               trailing: Text(
-                                controller.agen.value!.telpon!,
+                                controller.agen.value.telpon!,
                                 style: textStyle,
                               ),
                             ),
@@ -122,7 +123,7 @@ class PengaturanView extends GetView<PengaturanController> {
                               trailing: SizedBox(
                                 width: 200,
                                 child: Text(
-                                  controller.agen.value!.alamat!,
+                                  controller.agen.value.alamat!,
                                   style: textStyle,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -136,7 +137,7 @@ class PengaturanView extends GetView<PengaturanController> {
                                 style: textStyle,
                               ),
                               trailing: Text(
-                                controller.agen.value!.tanggal,
+                                controller.agen.value.tanggal,
                                 style: textStyle,
                               ),
                             ),

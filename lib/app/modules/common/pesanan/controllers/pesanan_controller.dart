@@ -4,10 +4,11 @@ import 'package:e_warong/app/data/models/pesanan_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/pesanan_service.dart';
 import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
-import 'package:e_warong/app/modules/agen/detail_pesanan/controllers/detail_pesanan_controller.dart';
 import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+
+import '../../detail_pesanan/controllers/detail_pesanan_controller.dart';
 
 class PesananController<T extends GetxController> extends GetxController {
   final UserType userType;
@@ -16,18 +17,26 @@ class PesananController<T extends GetxController> extends GetxController {
 
   RxBool isLoading = true.obs;
 
-  RxList<PesananModel> pesananList = <PesananModel>[].obs;
-
   List<PesananModel> get pesanan =>
       pesananList.where((pesanan) => pesanan.status == null).toList();
   List<PesananModel> get pesananDitolak =>
       pesananList.where((pesanan) => pesanan.status == false).toList();
-  List<PesananModel> get pesananDiterima =>
-      pesananList.where((pesanan) => pesanan.status == true).toList();
+  List<PesananModel> get pesananDiterima => pesananList
+      .where((pesanan) => pesanan.status == true && pesanan.selesai != true)
+      .toList();
   List<PesananModel> get pesananSelesai =>
       pesananList.where((pesanan) => pesanan.selesai == true).toList();
 
   final PesananService _pesananService = PesananService();
+
+  RxList<PesananModel> get pesananList {
+    switch (userType) {
+      case UserType.agen:
+        return (Get.find<T>() as AgenController).pesananList;
+      case UserType.masyarakat:
+        return (Get.find<T>() as MasyarakatController).pesananList;
+    }
+  }
 
   UserModel get user {
     switch (userType) {
@@ -43,7 +52,7 @@ class PesananController<T extends GetxController> extends GetxController {
       case UserType.agen:
         return 'Masuk';
       case UserType.masyarakat:
-        return 'Keluar';
+        return 'Order';
     }
   }
 
@@ -67,7 +76,7 @@ class PesananController<T extends GetxController> extends GetxController {
   void toDetailPesanan(PesananModel pesanan) {
     Get.toNamed(
       Routes.DETAIL_PESANAN,
-      arguments: DetailPesananArguments(pesanan: pesanan),
+      arguments: DetailPesananArguments(userType: userType, pesanan: pesanan),
     );
   }
 }

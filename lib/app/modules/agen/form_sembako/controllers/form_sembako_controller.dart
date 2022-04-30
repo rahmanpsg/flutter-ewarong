@@ -30,7 +30,7 @@ class FormSembakoController extends GetxController {
   XFile? image;
   RxString imagePath = ''.obs;
 
-  UserModel? agen = Get.find<AgenController>().user;
+  UserModel agen = Get.find<AgenController>().user;
 
   @override
   void onInit() {
@@ -73,7 +73,7 @@ class FormSembakoController extends GetxController {
 
     try {
       setData();
-      SembakoModel _sembako = await _sembakoService.post(agen!.id!, sembako);
+      SembakoModel _sembako = await _sembakoService.post(agen.id!, sembako);
       sembakoList.add(_sembako);
       Get.back();
     } on ApiResponseModel catch (res) {
