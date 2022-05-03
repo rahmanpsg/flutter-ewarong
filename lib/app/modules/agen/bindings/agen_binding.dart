@@ -1,7 +1,7 @@
 import 'package:e_warong/app/data/enums/user_type.dart';
 import 'package:e_warong/app/modules/agen/laporan/controllers/laporan_controller.dart';
-import 'package:e_warong/app/modules/agen/pengaturan/controllers/pengaturan_controller.dart';
 import 'package:e_warong/app/modules/agen/sembako/controllers/sembako_controller.dart';
+import 'package:e_warong/app/modules/common/pengaturan/controllers/pengaturan_controller.dart';
 import 'package:get/get.dart';
 
 import '../../common/pesanan/controllers/pesanan_controller.dart';
@@ -29,7 +29,9 @@ class AgenBinding extends Bindings {
     );
 
     Get.lazyPut<PengaturanController>(
-      () => PengaturanController(),
+      () => PengaturanController<AgenController>(
+        userType: UserType.agen,
+      ),
     );
   }
 }

@@ -15,7 +15,7 @@ class UserService {
     throw response;
   }
 
-  Future<ApiResponseModel> updateAgen({
+  Future<ApiResponseModel> updateUser({
     required String id,
     String? username,
     String? password,

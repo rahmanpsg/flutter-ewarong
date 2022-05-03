@@ -1,6 +1,6 @@
 import 'package:e_warong/app/modules/agen/laporan/views/laporan_view.dart';
-import 'package:e_warong/app/modules/agen/pengaturan/views/pengaturan_view.dart';
 import 'package:e_warong/app/modules/agen/sembako/views/sembako_view.dart';
+import 'package:e_warong/app/modules/common/pengaturan/views/pengaturan_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 

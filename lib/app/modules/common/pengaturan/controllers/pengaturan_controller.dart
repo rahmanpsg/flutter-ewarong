@@ -1,7 +1,9 @@
+import 'package:e_warong/app/data/enums/user_type.dart';
 import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/user_service.dart';
 import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
+import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/widgets/custom_text_field.dart';
@@ -9,7 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class PengaturanController extends GetxController {
+class PengaturanController<T extends GetxController> extends GetxController {
+  final UserType userType;
+
+  PengaturanController({required this.userType});
+
   RxBool isLoading = true.obs;
   RxBool isEdit = false.obs;
 
@@ -24,19 +30,28 @@ class PengaturanController extends GetxController {
 
   final UserService _userService = UserService();
 
-  Rx<UserModel> agen = Get.find<AgenController>().user.obs;
+  final Rx<UserModel> user = UserModel().obs;
 
   @override
   void onInit() {
+    switch (userType) {
+      case UserType.agen:
+        user.value = (Get.find<T>() as AgenController).user;
+        break;
+      case UserType.masyarakat:
+        user.value = (Get.find<T>() as MasyarakatController).user;
+        break;
+    }
+
     isLoading.value = false;
     super.onInit();
   }
 
-  void updateAgen() async {
+  void updateUser() async {
     isLoading.value = true;
 
-    ApiResponseModel res = await _userService.updateAgen(
-      id: agen.value.id!,
+    ApiResponseModel res = await _userService.updateUser(
+      id: user.value.id!,
       username: _username.value,
       password: _password.value,
       foto: _foto.value,
@@ -45,7 +60,7 @@ class PengaturanController extends GetxController {
     showSnackbar(res.message, res.error);
 
     try {
-      agen.value = UserModel.fromJson(res.data);
+      user.value = UserModel.fromJson(res.data);
     } catch (e) {
       print(e);
     }
@@ -66,7 +81,7 @@ class PengaturanController extends GetxController {
           textConfirm: "Oke",
           textCancel: "Batal",
           onConfirm: () {
-            updateAgen();
+            updateUser();
             Get.back();
           },
           onCancel: () {
@@ -97,7 +112,7 @@ class PengaturanController extends GetxController {
           default:
         }
 
-        agen.refresh();
+        user;
         Get.back();
       },
       content: CustomTextField(
