@@ -3,6 +3,7 @@ import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/pesanan_model.dart';
 import 'package:e_warong/app/data/services/pesanan_service.dart';
 import 'package:e_warong/app/modules/common/pesanan/controllers/pesanan_controller.dart';
+import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,10 @@ class DetailPesananArguments {
   final UserType userType;
   final PesananModel pesanan;
 
-  DetailPesananArguments({required this.userType, required this.pesanan});
+  DetailPesananArguments({
+    required this.userType,
+    required this.pesanan,
+  });
 }
 
 class DetailPesananController extends GetxController {
@@ -62,6 +66,8 @@ class DetailPesananController extends GetxController {
   }
 
   void confirmPesanan(bool value) {
+    if (Get.isSnackbarOpen) return;
+
     final String _title = value ? 'menerima' : 'menolak';
 
     Get.defaultDialog(
@@ -92,15 +98,26 @@ class DetailPesananController extends GetxController {
 
       if (userType == UserType.agen) {
         pesanan.value.status = value;
+        // if (value) {
+        //   Get.find<SembakoController>().updateStok(
+        //     pesanan.value.sembako!,
+        //     pesanan.value.jumlah!,
+        //   );
+        // }
       } else if (userType == UserType.masyarakat) {
         pesanan.value.selesai = value;
+        if (value) {
+          Get.find<MasyarakatController>().updateSaldo(
+            pesanan.value.harga!,
+          );
+        }
       }
 
       pesanan.value.updatedAt = DateTime.now();
 
       Get.find<PesananController>().pesananList.refresh();
     } on ApiResponseModel catch (res) {
-      print(res.data);
+      Get.snackbar('Informasi', res.errorMessage);
     }
     isLoading.value = false;
   }

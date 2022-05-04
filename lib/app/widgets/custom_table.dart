@@ -1,9 +1,11 @@
-import 'package:e_warong/app/themes/app_colors.dart';
+import 'package:e_warong/app/data/models/laporan_model.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomTable extends StatelessWidget {
-  const CustomTable({Key? key}) : super(key: key);
+  final List<LaporanSembakosModel> sembakos;
+
+  const CustomTable({Key? key, required this.sembakos}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class CustomTable extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           // Header
           Row(
@@ -33,20 +36,22 @@ class CustomTable extends StatelessWidget {
             thickness: 2,
           ),
           // Body
-          Expanded(
+          Flexible(
             child: ListView.builder(
-              itemCount: 100,
+              itemCount: sembakos.length,
               itemBuilder: (context, index) {
+                final LaporanSembakosModel sembako = sembakos[index];
                 return Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          "Sembako $index",
+                          sembako.sembako!.nama!,
                         ),
                         Text(
-                          "$index",
+                          sembako.jumlah.toString(),
                         ),
                       ],
                     ),

@@ -39,6 +39,22 @@ class SembakoService {
     throw response;
   }
 
+  Future<List<SembakoModel>> getByKeyword(String keyword) async {
+    final response = await _apiClient.getData('/sembako/search/$keyword');
+
+    if (!response.error) {
+      List<SembakoModel> _listSembako = [];
+
+      for (var sembako in response.data) {
+        _listSembako.add(SembakoModel.fromJson(sembako));
+      }
+
+      return _listSembako;
+    }
+
+    throw response;
+  }
+
   Future<SembakoModel> post(String idAgen, SembakoModel sembako) async {
     FormData _formData = FormData.fromMap(sembako.toJson());
 

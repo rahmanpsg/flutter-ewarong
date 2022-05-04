@@ -41,7 +41,10 @@ class LaporanList extends GetView<LaporanController> {
                                 ),
                               ),
                               trailing: CustomChip(
-                                label: controller.laporanBulan(bulan)!.getTotal,
+                                label: controller
+                                    .laporanBulan(bulan)!
+                                    .total
+                                    .toString(),
                                 color: dangerColor,
                               ),
                             ),
@@ -71,7 +74,11 @@ class LaporanList extends GetView<LaporanController> {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      Expanded(child: CustomTable()),
+                      Flexible(
+                        child: CustomTable(
+                          sembakos: controller.laporanBulan(bulan)!.sembakos!,
+                        ),
+                      ),
                     ],
                   ),
                 ),

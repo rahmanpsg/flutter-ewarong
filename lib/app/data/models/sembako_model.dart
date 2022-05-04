@@ -9,8 +9,6 @@ class SembakoModel {
   String? fotoUrl;
   int? harga;
   int? stok;
-
-  /// base64
   File? file;
 
   SembakoModel({
@@ -18,9 +16,9 @@ class SembakoModel {
     this.agen,
     this.nama,
     this.fotoUrl,
-    this.file,
     this.harga,
     this.stok,
+    this.file,
   });
 
   String get hargaFormat {

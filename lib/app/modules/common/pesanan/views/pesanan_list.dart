@@ -18,34 +18,38 @@ class PesananList extends GetView<PesananController> {
   Widget build(BuildContext context) {
     timeago.setLocaleMessages('id', timeago.IdMessages());
 
-    return controller.isLoading.isTrue
-        ? Center(child: CircularProgressIndicator())
-        : pesananList.isEmpty
-            ? Center(
-                child: Text(
-                  'Tidak ada data pesanan',
-                ),
-              )
-            : ListView.builder(
-                itemCount: pesananList.length,
-                itemBuilder: (context, index) {
-                  PesananModel pesanan = pesananList[index];
+    return Obx(() {
+      return controller.isLoading.isTrue
+          ? Center(child: CircularProgressIndicator())
+          : pesananList.isEmpty
+              ? Center(
+                  child: Text(
+                    'Tidak ada data pesanan',
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: pesananList.length,
+                  itemBuilder: (context, index) {
+                    PesananModel pesanan = pesananList[index];
 
-                  return ListTile(
-                    isThreeLine: true,
-                    leading: CustomImage(foto: pesanan.sembako!.fotoUrl),
-                    title: Text(pesanan.sembako!.nama!),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Total Pesanan: ${pesanan.jumlah}'),
-                        Text(timeago.format(pesanan.createdAt!, locale: "id")),
-                      ],
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () => controller.toDetailPesanan(pesanan),
-                  );
-                },
-              );
+                    return ListTile(
+                      isThreeLine: true,
+                      leading: CustomImage(foto: pesanan.sembako!.fotoUrl),
+                      title: Text(pesanan.sembako!.nama!),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Total Pesanan: ${pesanan.jumlah}'),
+                          Text(
+                            timeago.format(pesanan.updatedAt!, locale: "id"),
+                          ),
+                        ],
+                      ),
+                      trailing: Icon(Icons.keyboard_arrow_right),
+                      onTap: () => controller.toDetailPesanan(pesanan),
+                    );
+                  },
+                );
+    });
   }
 }

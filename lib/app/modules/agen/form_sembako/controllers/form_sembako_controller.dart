@@ -24,9 +24,9 @@ class FormSembakoController extends GetxController {
   final RxList<SembakoModel> sembakoList =
       Get.find<SembakoController>().sembakoList;
 
-  late final SembakoService _sembakoService;
+  late final SembakoService _sembakoService = SembakoService();
 
-  late final ImagePicker _picker;
+  late final ImagePicker _picker = ImagePicker();
   XFile? image;
   RxString imagePath = ''.obs;
 
@@ -34,9 +34,6 @@ class FormSembakoController extends GetxController {
 
   @override
   void onInit() {
-    _sembakoService = SembakoService();
-    _picker = ImagePicker();
-
     initArguments();
     initForm();
 

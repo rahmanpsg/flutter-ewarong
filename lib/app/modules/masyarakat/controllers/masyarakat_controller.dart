@@ -21,4 +21,8 @@ class MasyarakatController extends GetxController {
   void changePage(int index) {
     tabIndexSelected.value = index;
   }
+
+  void updateSaldo(int harga) {
+    user.saldo = user.saldo! - harga;
+  }
 }

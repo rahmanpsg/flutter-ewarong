@@ -16,7 +16,7 @@ class PengaturanController<T extends GetxController> extends GetxController {
 
   PengaturanController({required this.userType});
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
   RxBool isEdit = false.obs;
 
   final RxString _username = ''.obs;
@@ -34,6 +34,12 @@ class PengaturanController<T extends GetxController> extends GetxController {
 
   @override
   void onInit() {
+    initUser();
+
+    super.onInit();
+  }
+
+  void initUser() {
     switch (userType) {
       case UserType.agen:
         user.value = (Get.find<T>() as AgenController).user;
@@ -42,9 +48,6 @@ class PengaturanController<T extends GetxController> extends GetxController {
         user.value = (Get.find<T>() as MasyarakatController).user;
         break;
     }
-
-    isLoading.value = false;
-    super.onInit();
   }
 
   void updateUser() async {

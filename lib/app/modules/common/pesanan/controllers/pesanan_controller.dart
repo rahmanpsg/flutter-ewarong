@@ -60,17 +60,18 @@ class PesananController<T extends GetxController> extends GetxController {
   void onInit() async {
     await loadPesanan();
 
-    isLoading.value = false;
-
     super.onInit();
   }
 
   Future loadPesanan() async {
+    isLoading.value = true;
+    // pesananList.clear();
     try {
-      pesananList.addAll(await _pesananService.getAll(userType, user.id!));
+      pesananList.value = await _pesananService.getAll(userType, user.id!);
     } on ApiResponseModel catch (res) {
       print(res);
     }
+    isLoading.value = false;
   }
 
   void toDetailPesanan(PesananModel pesanan) {

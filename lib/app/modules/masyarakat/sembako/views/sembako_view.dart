@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../controllers/sembako_controller.dart';
 
@@ -17,70 +18,75 @@ class SembakoView extends GetView<SembakoController> {
         title: CustomTextField(
           controller: controller.searchController,
           hintText: 'Cari sembako',
-          suffixIcon: Icon(
+          prefixIcon: Icon(
             LineIcons.search,
             color: primaryColor,
           ),
         ),
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Obx(() {
-                return controller.isLoading.isTrue
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : controller.isError.isTrue
-                        ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.error,
-                                  color: dangerColor,
-                                  size: 40,
-                                ),
-                                Text(
-                                  controller.errorMessage.value,
-                                  style: boldTextStyle.copyWith(
+      body: LiquidPullToRefresh(
+        onRefresh: controller.getAllSembako,
+        color: secondaryColor,
+        showChildOpacityTransition: false,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Obx(() {
+                  return controller.isLoading.isTrue
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : controller.isError.isTrue
+                          ? Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.error,
                                     color: dangerColor,
-                                    fontSize: 16,
+                                    size: 40,
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : controller.sembakoList.isEmpty
-                            ? Center(
-                                child: Text('Tidak ada data sembako'),
-                              )
-                            : GridView.builder(
-                                itemCount: controller.sembakoList.length,
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 8,
-                                  crossAxisSpacing: 8,
-                                ),
-                                itemBuilder: (context, index) => CustomCard(
-                                  fotoUrl:
-                                      controller.sembakoList[index].fotoUrl,
-                                  title: controller.sembakoList[index].nama!,
-                                  subtitle:
-                                      controller.sembakoList[index].hargaFormat,
-                                  onTap: () => controller.toDetailSembako(
-                                    controller.sembakoList[index],
+                                  Text(
+                                    controller.errorMessage.value,
+                                    style: boldTextStyle.copyWith(
+                                      color: dangerColor,
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ),
-                              );
-              }),
+                                ],
+                              ),
+                            )
+                          : controller.sembakoList.isEmpty
+                              ? Center(
+                                  child: Text('Tidak ada data sembako'),
+                                )
+                              : GridView.builder(
+                                  itemCount: controller.sembakoList.length,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 8,
+                                    crossAxisSpacing: 8,
+                                  ),
+                                  itemBuilder: (context, index) => CustomCard(
+                                    fotoUrl:
+                                        controller.sembakoList[index].fotoUrl,
+                                    title: controller.sembakoList[index].nama!,
+                                    subtitle: controller
+                                        .sembakoList[index].hargaFormat,
+                                    onTap: () => controller.toDetailSembako(
+                                      controller.sembakoList[index],
+                                    ),
+                                  ),
+                                );
+                }),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

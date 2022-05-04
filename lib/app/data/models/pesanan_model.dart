@@ -7,6 +7,7 @@ class PesananModel {
   UserModel? agen;
   UserModel? masyarakat;
   SembakoModel? sembako;
+  int? harga;
   int? jumlah;
   bool? status;
   bool? selesai;
@@ -18,6 +19,7 @@ class PesananModel {
     this.agen,
     this.masyarakat,
     this.sembako,
+    this.harga,
     this.jumlah,
     this.status,
     this.selesai,
@@ -37,7 +39,7 @@ class PesananModel {
       symbol: 'Rp. ',
       decimalDigits: 0,
     );
-    return currencyFormatter.format(sembako!.harga! * jumlah!);
+    return currencyFormatter.format(harga! * jumlah!);
   }
 
   String get statusPesanan {
@@ -63,6 +65,7 @@ class PesananModel {
         sembako: json["sembako"] == null || json["sembako"] is String
             ? null
             : SembakoModel.fromJson(json["sembako"]),
+        harga: json["harga"],
         jumlah: json["jumlah"],
         status: json["status"],
         selesai: json["selesai"],
@@ -79,6 +82,7 @@ class PesananModel {
         "agen": agen?.id,
         "masyarakat": masyarakat?.id,
         "sembako": sembako?.id,
+        "harga": harga,
         "jumlah": jumlah,
         "status": status,
         "selesai": selesai,

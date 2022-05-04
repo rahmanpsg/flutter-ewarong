@@ -35,4 +35,10 @@ class SembakoController extends GetxController {
 
     isLoading.value = false;
   }
+
+  void updateStok(SembakoModel sembako, int jumlah) {
+    SembakoModel _sembako = sembakoList.firstWhere((s) => s.id == sembako.id);
+
+    _sembako.stok = _sembako.stok! - jumlah;
+  }
 }

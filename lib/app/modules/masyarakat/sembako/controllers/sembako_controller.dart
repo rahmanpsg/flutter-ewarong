@@ -13,26 +13,57 @@ class SembakoController extends GetxController {
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
-  RxList<SembakoModel> sembakoList = <SembakoModel>[].obs;
+  final SembakoService _sembakoService = SembakoService();
+  final TextEditingController searchController = TextEditingController();
 
-  late final SembakoService _sembakoService;
-  late final TextEditingController searchController;
+  RxBool onSearch = false.obs;
+  RxString search = ''.obs;
 
   UserModel masyarakat = Get.find<MasyarakatController>().user;
 
+  RxList<SembakoModel> _sembakoList = <SembakoModel>[].obs;
+  RxList<SembakoModel> _sembakoSearchList = <SembakoModel>[].obs;
+
+  List<SembakoModel> get sembakoList =>
+      onSearch.isFalse ? _sembakoList : _sembakoSearchList;
+
   @override
   void onInit() {
-    _sembakoService = SembakoService();
-    searchController = TextEditingController();
     getAllSembako();
+
+    searchController.addListener(() {
+      search.value = searchController.text;
+    });
+
+    debounce(search, ((String keyword) {
+      onSearch.value = search.isNotEmpty;
+
+      if (keyword.isNotEmpty) {
+        searchSembako(keyword);
+      }
+
+      isLoading.value = false;
+    }));
 
     super.onInit();
   }
 
-  void getAllSembako() async {
+  Future getAllSembako() async {
     isLoading.value = true;
     try {
-      sembakoList.value = await _sembakoService.getAll();
+      _sembakoList.value = await _sembakoService.getAll();
+    } on ApiResponseModel catch (res) {
+      isError.value = true;
+      errorMessage.value = res.message;
+    }
+
+    isLoading.value = false;
+  }
+
+  Future searchSembako(String keyword) async {
+    isLoading.value = true;
+    try {
+      _sembakoSearchList.value = await _sembakoService.getByKeyword(keyword);
     } on ApiResponseModel catch (res) {
       isError.value = true;
       errorMessage.value = res.message;

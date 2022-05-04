@@ -3,6 +3,7 @@ import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../controllers/laporan_controller.dart';
 
@@ -13,6 +14,12 @@ class LaporanView extends GetView<LaporanController> {
       appBar: AppBar(
         title: Text("Laporan"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: controller.loadLaporan,
+            icon: Icon(LineIcons.syncIcon),
+          )
+        ],
       ),
       body: DefaultTabController(
         length: controller.bulanList.length,

@@ -1,7 +1,10 @@
-import 'dart:math';
-
+import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/laporan_model.dart';
+import 'package:e_warong/app/data/models/user_model.dart';
+import 'package:e_warong/app/data/services/laporan_service.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/agen_controller.dart';
 
 class LaporanController extends GetxController {
   RxBool isLoading = true.obs;
@@ -26,25 +29,26 @@ class LaporanController extends GetxController {
   RxList<LaporanModel> laporanList = <LaporanModel>[].obs;
 
   LaporanModel? laporanBulan(int bulan) =>
-      laporanList.firstWhereOrNull((laporan) => laporan.bulan == bulan);
+      laporanList.firstWhereOrNull((laporan) => laporan.bulan == bulan + 1);
+
+  UserModel agen = Get.find<AgenController>().user;
 
   @override
   void onInit() async {
-    await Future.delayed(Duration(seconds: 1));
-
-    isLoading.value = false;
-
-    generateDumpData();
+    await loadLaporan();
 
     super.onInit();
   }
 
-  void generateDumpData() {
-    for (var i = 0; i < 6; i++) {
-      laporanList.add(LaporanModel(
-          bulan: Random().nextInt(12),
-          total: Random().nextInt(100),
-          pendapatan: Random().nextInt(1000000)));
+  Future loadLaporan() async {
+    isLoading.value = true;
+
+    try {
+      laporanList.value = await LaporanService().getAllAgen(agen.id!);
+    } on ApiResponseModel catch (res) {
+      print(res.message);
     }
+
+    isLoading.value = false;
   }
 }

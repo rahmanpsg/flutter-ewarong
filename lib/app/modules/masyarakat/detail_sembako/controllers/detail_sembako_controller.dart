@@ -90,22 +90,9 @@ class DetailSembakoController extends GetxController {
       pesananList.add(_pesanan);
 
       Get.back();
-      showSnackbar('Pesanan berhasil dikirim');
+      Get.snackbar('Informasi', 'Pesanan berhasil dikirim');
     } on ApiResponseModel catch (res) {
-      showSnackbar(res.errorMessage, true);
+      Get.snackbar('Informasi', res.errorMessage);
     }
-  }
-
-  void showSnackbar(String text, [bool error = false]) {
-    Get.snackbar(
-      'Informasi',
-      text,
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: error ? dangerColor : secondaryColor,
-      colorText: Colors.white,
-      borderRadius: 10,
-      margin: EdgeInsets.all(10),
-      snackStyle: SnackStyle.FLOATING,
-    );
   }
 }

@@ -48,6 +48,7 @@ class AuthController extends GetxController {
 
   void login(String role) async {
     if (validateFormLogin(role) == false) return;
+    if (Get.isSnackbarOpen) return;
 
     isLoading.value = true;
 
@@ -70,7 +71,7 @@ class AuthController extends GetxController {
         }
       }
     } on ApiResponseModel catch (res) {
-      showDangerSnackbar(res.errorMessage);
+      Get.snackbar('Informasi', res.errorMessage);
     }
 
     isLoading.value = false;
@@ -83,31 +84,18 @@ class AuthController extends GetxController {
   bool validateFormLogin(String role) {
     if (role == 'masyarakat') {
       if (kpmController.text.isEmpty || passMasyarakatController.text.isEmpty) {
-        showDangerSnackbar('Nomor KPM dan Password tidak boleh kosong');
+        Get.snackbar('Informasi', 'Nomor KPM dan Password tidak boleh kosong');
 
         return false;
       }
     } else if (role == 'agen') {
       if (usernameController.text.isEmpty || passAgenController.text.isEmpty) {
-        showDangerSnackbar('Username dan Password tidak boleh kosong');
+        Get.snackbar('Informasi', 'Username dan Password tidak boleh kosong');
 
         return false;
       }
     }
 
     return true;
-  }
-
-  void showDangerSnackbar(String text) {
-    Get.snackbar(
-      'Informasi',
-      text,
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: dangerColor,
-      colorText: Colors.white,
-      borderRadius: 10,
-      margin: EdgeInsets.all(10),
-      snackStyle: SnackStyle.FLOATING,
-    );
   }
 }

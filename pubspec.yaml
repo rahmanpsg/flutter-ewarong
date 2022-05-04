@@ -9,8 +9,6 @@ dependencies:
   animated_splash_screen: ^1.2.0
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
-  flutter:
-    sdk: flutter
   get: 4.6.1
   get_storage: ^2.0.3
   google_nav_bar: ^5.0.6
@@ -18,22 +16,24 @@ dependencies:
   intl: ^0.17.0
   line_icons: ^2.0.1
   timeago: ^3.2.2
+  liquid_pull_to_refresh: 3.0.1
+  flutter:
+    sdk: flutter
 
 dev_dependencies:
   flutter_lints: ^1.0.0
+  lints: 1.0.1
   flutter_test:
     sdk: flutter
-  lints: 1.0.1
 
 flutter:
-  uses-material-design: true
-
   assets:
     - assets/images/
-
   fonts:
     - family: Baloo2
       fonts:
         - asset: assets/fonts/Baloo2-Regular.ttf
         - asset: assets/fonts/Baloo2-Bold.ttf
           weight: 700
+
+  uses-material-design: true
