@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextInputType keyboardType;
+  final TextInputAction textInputAction;
   final String? Function(String?)? validator;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -17,6 +18,7 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
+    this.textInputAction = TextInputAction.next,
     this.validator,
     this.prefixIcon,
     this.suffixIcon,
@@ -25,9 +27,11 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
-      controller: controller,
+      textInputAction: textInputAction,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -48,6 +52,20 @@ class CustomTextField extends StatelessWidget {
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: secondaryColor,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(0)),
+        ),
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: dangerColor,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(0)),
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: dangerColor,
             width: 1,
           ),
           borderRadius: BorderRadius.all(Radius.circular(0)),

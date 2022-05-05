@@ -2,10 +2,8 @@ import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/auth_service.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
-import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class AuthController extends GetxController {
   RxBool isLoading = false.obs;
@@ -41,18 +39,17 @@ class AuthController extends GetxController {
     usernameController.dispose();
     passAgenController.dispose();
 
-    Get.delete<AuthController>();
-
     super.dispose();
   }
 
   void login(String role) async {
-    if (validateFormLogin(role) == false) return;
     if (Get.isSnackbarOpen) return;
 
     isLoading.value = true;
 
     try {
+      validateFormLogin(role);
+
       UserModel? _user;
 
       if (role == 'masyarakat') {
@@ -70,6 +67,8 @@ class AuthController extends GetxController {
           Get.offAllNamed(Routes.AGEN, arguments: _user);
         }
       }
+    } on String catch (err) {
+      Get.snackbar('Informasi', err);
     } on ApiResponseModel catch (res) {
       Get.snackbar('Informasi', res.errorMessage);
     }
@@ -81,21 +80,15 @@ class AuthController extends GetxController {
     Get.back();
   }
 
-  bool validateFormLogin(String role) {
+  void validateFormLogin(String role) {
     if (role == 'masyarakat') {
       if (kpmController.text.isEmpty || passMasyarakatController.text.isEmpty) {
-        Get.snackbar('Informasi', 'Nomor KPM dan Password tidak boleh kosong');
-
-        return false;
+        throw 'Nomor KPM dan Password tidak boleh kosong';
       }
     } else if (role == 'agen') {
       if (usernameController.text.isEmpty || passAgenController.text.isEmpty) {
-        Get.snackbar('Informasi', 'Username dan Password tidak boleh kosong');
-
-        return false;
+        throw 'Username dan Password tidak boleh kosong';
       }
     }
-
-    return true;
   }
 }

@@ -55,4 +55,13 @@ class AuthService {
 
     throw response;
   }
+
+  Future<ApiResponseModel> registrasiAgen(UserModel user) async {
+    final response =
+        await _apiClient.postData('/auth/registrasi', user.toJson());
+
+    if (!response.error) return response;
+
+    throw response;
+  }
 }
