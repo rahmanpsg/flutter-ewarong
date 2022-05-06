@@ -39,7 +39,7 @@ class LoginMasyarakat extends GetView<AuthController> {
           Obx(() {
             return CustomSubmitButton(
               text: "Masuk",
-              onSubmit: () => controller.login('masyarakat'),
+              onSubmit: () => controller.login('user'),
               isLoading: controller.isLoading.value,
             );
           })

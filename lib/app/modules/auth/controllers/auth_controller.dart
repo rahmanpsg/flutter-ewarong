@@ -52,7 +52,9 @@ class AuthController extends GetxController {
 
       UserModel? _user;
 
-      if (role == 'masyarakat') {
+      print(_user.toString());
+
+      if (role == 'user') {
         _user = await _authService.login(
             kpmController.text, passMasyarakatController.text);
       } else if (role == 'agen') {
@@ -61,7 +63,7 @@ class AuthController extends GetxController {
       }
 
       if (_user != null) {
-        if (_user.role == 'masyarakat') {
+        if (_user.role == 'user') {
           Get.offAllNamed(Routes.MASYARAKAT, arguments: _user);
         } else if (_user.role == 'agen') {
           Get.offAllNamed(Routes.AGEN, arguments: _user);
