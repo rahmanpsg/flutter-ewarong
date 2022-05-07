@@ -8,8 +8,8 @@ abstract class Routes {
   static const REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const AGEN = _Paths.AGEN;
   static const FORM_SEMBAKO = _Paths.AGEN + _Paths.FORM_SEMBAKO;
-  static const MASYARAKAT = _Paths.MASYARAKAT;
-  static const DETAIL_SEMBAKO = _Paths.MASYARAKAT + _Paths.DETAIL_SEMBAKO;
+  static const USER = _Paths.USER;
+  static const DETAIL_SEMBAKO = _Paths.USER + _Paths.DETAIL_SEMBAKO;
   static const DETAIL_PESANAN = _Paths.DETAIL_PESANAN;
 }
 
@@ -21,6 +21,6 @@ abstract class _Paths {
   static const AGEN = '/agen';
   static const FORM_SEMBAKO = '/form-sembako';
   static const DETAIL_PESANAN = '/detail-pesanan';
-  static const MASYARAKAT = '/masyarakat';
+  static const USER = '/user';
   static const DETAIL_SEMBAKO = '/detail-sembako';
 }

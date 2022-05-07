@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 class PesananModel {
   String? id;
   UserModel? agen;
-  UserModel? masyarakat;
+  UserModel? user;
   SembakoModel? sembako;
   int? harga;
   int? jumlah;
@@ -17,7 +17,7 @@ class PesananModel {
   PesananModel({
     this.id,
     this.agen,
-    this.masyarakat,
+    this.user,
     this.sembako,
     this.harga,
     this.jumlah,
@@ -59,9 +59,9 @@ class PesananModel {
         agen: json["agen"] == null || json["agen"] is String
             ? null
             : UserModel.fromJson(json["agen"]),
-        masyarakat: json["masyarakat"] == null || json["masyarakat"] is String
+        user: json["user"] == null || json["user"] is String
             ? null
-            : UserModel.fromJson(json["masyarakat"]),
+            : UserModel.fromJson(json["user"]),
         sembako: json["sembako"] == null || json["sembako"] is String
             ? null
             : SembakoModel.fromJson(json["sembako"]),
@@ -80,7 +80,7 @@ class PesananModel {
   Map<String, dynamic> toJson() => {
         "id": id,
         "agen": agen?.id,
-        "masyarakat": masyarakat?.id,
+        "user": user?.id,
         "sembako": sembako?.id,
         "harga": harga,
         "jumlah": jumlah,

@@ -8,6 +8,7 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
   await GetStorage.init();
+  // GetStorage().erase();
   runApp(
     GetMaterialApp(
       title: "E-Warong",

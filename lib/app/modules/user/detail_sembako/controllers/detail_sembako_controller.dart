@@ -4,9 +4,7 @@ import 'package:e_warong/app/data/models/sembako_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/pesanan_service.dart';
 import 'package:e_warong/app/data/services/user_service.dart';
-import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
-import 'package:e_warong/app/themes/app_colors.dart';
-import 'package:flutter/material.dart';
+import 'package:e_warong/app/modules/user/controllers/user_controller.dart';
 import 'package:get/get.dart';
 
 class DetailSembakoArguments {
@@ -25,10 +23,10 @@ class DetailSembakoController extends GetxController {
 
   final PesananService _pesananService = PesananService();
 
-  final UserModel masyarakat = Get.find<MasyarakatController>().user;
+  final UserModel user = Get.find<UserController>().user;
 
   final RxList<PesananModel> pesananList =
-      Get.find<MasyarakatController>().pesananList;
+      Get.find<UserController>().pesananList;
 
   late PesananModel pesanan;
 
@@ -41,7 +39,7 @@ class DetailSembakoController extends GetxController {
 
     pesanan = PesananModel(
       agen: agen,
-      masyarakat: masyarakat,
+      user: user,
       sembako: sembako,
     );
 

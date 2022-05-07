@@ -4,7 +4,7 @@ import 'package:e_warong/app/data/models/pesanan_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/pesanan_service.dart';
 import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
-import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
+import 'package:e_warong/app/modules/user/controllers/user_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
@@ -33,8 +33,8 @@ class PesananController<T extends GetxController> extends GetxController {
     switch (userType) {
       case UserType.agen:
         return (Get.find<T>() as AgenController).pesananList;
-      case UserType.masyarakat:
-        return (Get.find<T>() as MasyarakatController).pesananList;
+      case UserType.user:
+        return (Get.find<T>() as UserController).pesananList;
     }
   }
 
@@ -42,8 +42,8 @@ class PesananController<T extends GetxController> extends GetxController {
     switch (userType) {
       case UserType.agen:
         return (Get.find<T>() as AgenController).user;
-      case UserType.masyarakat:
-        return (Get.find<T>() as MasyarakatController).user;
+      case UserType.user:
+        return (Get.find<T>() as UserController).user;
     }
   }
 
@@ -51,7 +51,7 @@ class PesananController<T extends GetxController> extends GetxController {
     switch (userType) {
       case UserType.agen:
         return 'Masuk';
-      case UserType.masyarakat:
+      case UserType.user:
         return 'Order';
     }
   }

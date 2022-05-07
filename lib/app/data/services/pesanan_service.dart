@@ -6,7 +6,7 @@ class PesananService {
   final ApiClient _apiClient = ApiClient();
 
   Future<List<PesananModel>> getAll(UserType userType, String idUser) async {
-    String role = userType == UserType.agen ? 'agen' : 'masyarakat';
+    String role = userType == UserType.agen ? 'agen' : 'user';
 
     final response = await _apiClient.getData('/pesanan/$role/$idUser');
 
@@ -35,7 +35,7 @@ class PesananService {
 
   Future<PesananModel> konfirmasi(
       UserType userType, String id, PesananModel pesanan) async {
-    String role = userType == UserType.agen ? 'agen' : 'masyarakat';
+    String role = userType == UserType.agen ? 'agen' : 'user';
 
     final response = await _apiClient.putData(
         '/pesanan/konfirmasi/$role/$id', pesanan.toJson());

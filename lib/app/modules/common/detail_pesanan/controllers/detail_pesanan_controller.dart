@@ -3,7 +3,7 @@ import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/pesanan_model.dart';
 import 'package:e_warong/app/data/services/pesanan_service.dart';
 import 'package:e_warong/app/modules/common/pesanan/controllers/pesanan_controller.dart';
-import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
+import 'package:e_warong/app/modules/user/controllers/user_controller.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:get/get.dart';
 
@@ -28,8 +28,8 @@ class DetailPesananController extends GetxController {
   String? get fotoUrl {
     switch (userType) {
       case UserType.agen:
-        return pesanan.value.masyarakat!.fotoUrl;
-      case UserType.masyarakat:
+        return pesanan.value.user!.fotoUrl;
+      case UserType.user:
         return pesanan.value.agen!.fotoUrl;
     }
   }
@@ -37,8 +37,8 @@ class DetailPesananController extends GetxController {
   String get title {
     switch (userType) {
       case UserType.agen:
-        return pesanan.value.masyarakat!.nama!;
-      case UserType.masyarakat:
+        return pesanan.value.user!.nama!;
+      case UserType.user:
         return pesanan.value.agen!.nama!;
     }
   }
@@ -46,8 +46,8 @@ class DetailPesananController extends GetxController {
   String get subtile {
     switch (userType) {
       case UserType.agen:
-        return pesanan.value.masyarakat!.ktm.toString();
-      case UserType.masyarakat:
+        return pesanan.value.user!.kpm.toString();
+      case UserType.user:
         return pesanan.value.agen!.alamat!;
     }
   }
@@ -90,7 +90,7 @@ class DetailPesananController extends GetxController {
 
       if (userType == UserType.agen) {
         _pesanan.status = value;
-      } else if (userType == UserType.masyarakat) {
+      } else if (userType == UserType.user) {
         _pesanan.selesai = value;
       }
 
@@ -104,10 +104,10 @@ class DetailPesananController extends GetxController {
         //     pesanan.value.jumlah!,
         //   );
         // }
-      } else if (userType == UserType.masyarakat) {
+      } else if (userType == UserType.user) {
         pesanan.value.selesai = value;
         if (value) {
-          Get.find<MasyarakatController>().updateSaldo(
+          Get.find<UserController>().updateSaldo(
             pesanan.value.harga!,
           );
         }

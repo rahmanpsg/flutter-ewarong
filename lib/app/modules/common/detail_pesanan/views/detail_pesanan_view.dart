@@ -65,8 +65,8 @@ class DetailPesananView extends GetView<DetailPesananController> {
                                       ),
                                       if (controller.userType == UserType.agen)
                                         Text(
-                                          controller.pesanan.value.masyarakat!
-                                              .saldoFormat,
+                                          controller
+                                              .pesanan.value.user!.saldoFormat,
                                           style: boldTextStyle.copyWith(
                                               color: primaryColor),
                                         ),
@@ -148,7 +148,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
               if (controller.pesanan.value.selesai != true &&
                   ((controller.userType == UserType.agen &&
                           controller.pesanan.value.status == null) ||
-                      (controller.userType == UserType.masyarakat &&
+                      (controller.userType == UserType.user &&
                           controller.pesanan.value.status == true))) ...[
                 const SizedBox(height: 8),
                 CustomSubmitButton(

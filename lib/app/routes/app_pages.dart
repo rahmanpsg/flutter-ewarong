@@ -10,12 +10,13 @@ import '../modules/auth/register/views/register_view.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/common/detail_pesanan/bindings/detail_pesanan_binding.dart';
 import '../modules/common/detail_pesanan/views/detail_pesanan_view.dart';
-import '../modules/masyarakat/bindings/masyarakat_binding.dart';
-import '../modules/masyarakat/detail_sembako/bindings/detail_sembako_binding.dart';
-import '../modules/masyarakat/detail_sembako/views/detail_sembako_view.dart';
-import '../modules/masyarakat/views/masyarakat_view.dart';
+
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/user/bindings/user_binding.dart';
+import '../modules/user/detail_sembako/bindings/detail_sembako_binding.dart';
+import '../modules/user/detail_sembako/views/detail_sembako_view.dart';
+import '../modules/user/views/user_view.dart';
 
 part 'app_routes.dart';
 
@@ -56,9 +57,9 @@ class AppPages {
       ],
     ),
     GetPage(
-      name: _Paths.MASYARAKAT,
-      page: () => MasyarakatView(),
-      binding: MasyarakatBinding(),
+      name: _Paths.USER,
+      page: () => UserView(),
+      binding: UserBinding(),
       children: [
         GetPage(
           name: _Paths.DETAIL_SEMBAKO,

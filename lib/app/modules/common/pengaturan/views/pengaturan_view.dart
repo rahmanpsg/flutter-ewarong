@@ -1,13 +1,11 @@
 import 'package:e_warong/app/data/enums/user_type.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
-import 'package:e_warong/app/widgets/custom_image.dart';
 import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../controllers/pengaturan_controller.dart';
 
@@ -67,7 +65,7 @@ class PengaturanView extends GetView<PengaturanController> {
                         ),
                       ),
                       const Divider(),
-                      if (controller.userType == UserType.masyarakat) ...[
+                      if (controller.userType == UserType.user) ...[
                         ListTile(
                           title: Text(
                             "Saldo",
@@ -100,14 +98,14 @@ class PengaturanView extends GetView<PengaturanController> {
                                 : textStyle,
                           ),
                         ),
-                      if (controller.userType == UserType.masyarakat)
+                      if (controller.userType == UserType.user)
                         ListTile(
                           title: Text(
                             "Nomor KTM",
                             style: textStyle,
                           ),
                           trailing: Text(
-                            controller.user.value.ktm.toString(),
+                            controller.user.value.kpm.toString(),
                             style: textStyle,
                           ),
                         ),

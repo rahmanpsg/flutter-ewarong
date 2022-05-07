@@ -2,8 +2,8 @@ import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/sembako_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/sembako_service.dart';
-import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
-import 'package:e_warong/app/modules/masyarakat/detail_sembako/controllers/detail_sembako_controller.dart';
+import 'package:e_warong/app/modules/user/controllers/user_controller.dart';
+import 'package:e_warong/app/modules/user/detail_sembako/controllers/detail_sembako_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,10 +19,10 @@ class SembakoController extends GetxController {
   RxBool onSearch = false.obs;
   RxString search = ''.obs;
 
-  UserModel masyarakat = Get.find<MasyarakatController>().user;
+  UserModel masyarakat = Get.find<UserController>().user;
 
-  RxList<SembakoModel> _sembakoList = <SembakoModel>[].obs;
-  RxList<SembakoModel> _sembakoSearchList = <SembakoModel>[].obs;
+  final RxList<SembakoModel> _sembakoList = <SembakoModel>[].obs;
+  final RxList<SembakoModel> _sembakoSearchList = <SembakoModel>[].obs;
 
   List<SembakoModel> get sembakoList =>
       onSearch.isFalse ? _sembakoList : _sembakoSearchList;

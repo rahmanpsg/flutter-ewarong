@@ -1,4 +1,4 @@
 enum UserType {
   agen,
-  masyarakat,
+  user,
 }

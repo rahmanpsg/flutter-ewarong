@@ -1,4 +1,4 @@
-import 'package:e_warong/app/modules/masyarakat/sembako/views/sembako_view.dart';
+import 'package:e_warong/app/modules/user/sembako/views/sembako_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +8,9 @@ import 'package:line_icons/line_icons.dart';
 
 import '../../common/pengaturan/views/pengaturan_view.dart';
 import '../../common/pesanan/views/pesanan_view.dart';
-import '../controllers/masyarakat_controller.dart';
+import '../controllers/user_controller.dart';
 
-class MasyarakatView extends GetView<MasyarakatController> {
+class UserView extends GetView<UserController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {

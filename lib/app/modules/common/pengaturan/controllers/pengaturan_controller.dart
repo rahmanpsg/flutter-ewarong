@@ -3,7 +3,7 @@ import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/user_service.dart';
 import 'package:e_warong/app/modules/agen/controllers/agen_controller.dart';
-import 'package:e_warong/app/modules/masyarakat/controllers/masyarakat_controller.dart';
+import 'package:e_warong/app/modules/user/controllers/user_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/widgets/custom_text_field.dart';
@@ -44,8 +44,8 @@ class PengaturanController<T extends GetxController> extends GetxController {
       case UserType.agen:
         user.value = (Get.find<T>() as AgenController).user;
         break;
-      case UserType.masyarakat:
-        user.value = (Get.find<T>() as MasyarakatController).user;
+      case UserType.user:
+        user.value = (Get.find<T>() as UserController).user;
         break;
     }
   }

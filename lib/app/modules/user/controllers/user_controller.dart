@@ -2,7 +2,7 @@ import 'package:e_warong/app/data/models/pesanan_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:get/get.dart';
 
-class MasyarakatController extends GetxController {
+class UserController extends GetxController {
   RxInt tabIndexSelected = 0.obs;
 
   late final UserModel user;
