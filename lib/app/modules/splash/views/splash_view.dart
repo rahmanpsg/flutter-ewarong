@@ -12,7 +12,7 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       nextScreen: Landing(),
-      duration: 0, //3000,
+      duration: 3000,
       splashIconSize: 200,
       splash: Column(
         children: [
@@ -40,7 +40,7 @@ class Landing extends GetView<SplashController> {
       controller.cekLogin,
     );
     return Container(
-      color: Colors.transparent,
+      color: secondaryColor,
     );
   }
 }
