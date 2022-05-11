@@ -5,7 +5,7 @@ import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
-  void cekLogin(Duration duration) async {
+  Future<void> cekLogin(Duration duration) async {
     try {
       UserModel _user = await AuthService().verifyToken();
 

@@ -55,6 +55,7 @@ class DetailPesananController extends GetxController {
   @override
   void onInit() {
     initArguments();
+
     super.onInit();
   }
 

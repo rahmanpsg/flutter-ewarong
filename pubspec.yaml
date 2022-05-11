@@ -9,22 +9,23 @@ dependencies:
   animated_splash_screen: ^1.2.0
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
+  flutter:
+    sdk: flutter
   get: 4.6.1
   get_storage: ^2.0.3
   google_nav_bar: ^5.0.6
   image_picker: ^0.8.5
   intl: ^0.17.0
   line_icons: ^2.0.1
-  timeago: ^3.2.2
   liquid_pull_to_refresh: 3.0.1
-  flutter:
-    sdk: flutter
+  page_transition: ^2.0.5
+  timeago: ^3.2.2
 
 dev_dependencies:
   flutter_lints: ^1.0.0
-  lints: 1.0.1
   flutter_test:
     sdk: flutter
+  lints: 1.0.1
 
 flutter:
   assets:

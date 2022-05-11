@@ -8,7 +8,7 @@ class ApiClient {
     //   ? 'http://10.0.2.2:3000/api'
     //   : 'http://localhost:3000/api',
     baseUrl: 'https://ewarong-server.herokuapp.com/api',
-    connectTimeout: 10000, //10 seconds
+    // connectTimeout: 10000, //10 seconds
     receiveTimeout: 10000,
   ));
 

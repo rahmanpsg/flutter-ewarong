@@ -4,6 +4,7 @@ import 'package:e_warong/app/themes/app_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../controllers/splash_controller.dart';
 
@@ -12,6 +13,7 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       nextScreen: Landing(),
+      pageTransitionType: PageTransitionType.fade,
       duration: 3000,
       splashIconSize: 200,
       splash: Column(
@@ -39,8 +41,14 @@ class Landing extends GetView<SplashController> {
     WidgetsBinding.instance?.addPostFrameCallback(
       controller.cekLogin,
     );
+
     return Container(
       color: secondaryColor,
+      child: Center(
+        child: CircularProgressIndicator(
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }
