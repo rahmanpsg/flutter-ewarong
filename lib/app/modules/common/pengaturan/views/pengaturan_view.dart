@@ -23,23 +23,23 @@ class PengaturanView extends GetView<PengaturanController> {
       appBar: AppBar(
         title: Text("Pengaturan"),
         centerTitle: true,
-        actions: [
-          Obx(() {
-            return IconButton(
-              onPressed:
-                  controller.isLoading.isTrue ? null : controller.toggleEdit,
-              icon: controller.isLoading.isTrue
-                  ? CircularProgressIndicator(
-                      color: Colors.white,
-                    )
-                  : Icon(
-                      controller.isEdit.isTrue
-                          ? LineIcons.save
-                          : LineIcons.userEdit,
-                    ),
-            );
-          })
-        ],
+        // actions: [
+        //   Obx(() {
+        //     return IconButton(
+        //       onPressed:
+        //           controller.isLoading.isTrue ? null : controller.toggleEdit,
+        //       icon: controller.isLoading.isTrue
+        //           ? CircularProgressIndicator(
+        //               color: Colors.white,
+        //             )
+        //           : Icon(
+        //               controller.isEdit.isTrue
+        //                   ? LineIcons.save
+        //                   : LineIcons.userEdit,
+        //             ),
+        //     );
+        //   })
+        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,6 +66,19 @@ class PengaturanView extends GetView<PengaturanController> {
                           ),
                         ),
                         const Divider(),
+                        if (controller.userType == UserType.agen) ...[
+                          ListTile(
+                            title: Text(
+                              "Nama Toko",
+                              style: textStyle,
+                            ),
+                            trailing: Text(
+                              controller.user.value.namaToko!,
+                              style: textStyle,
+                            ),
+                          ),
+                          const Divider(),
+                        ],
                         if (controller.userType == UserType.user) ...[
                           ListTile(
                             title: Text(
@@ -102,7 +115,7 @@ class PengaturanView extends GetView<PengaturanController> {
                         if (controller.userType == UserType.user)
                           ListTile(
                             title: Text(
-                              "Nomor KTM",
+                              "Nomor KPM",
                               style: textStyle,
                             ),
                             trailing: Text(

@@ -1,10 +1,10 @@
 import 'package:e_warong/app/data/enums/user_type.dart';
 import 'package:e_warong/app/modules/common/pengaturan/controllers/pengaturan_controller.dart';
+import 'package:e_warong/app/modules/user/toko/controllers/toko_controller.dart';
 import 'package:get/get.dart';
 
 import '../../common/pesanan/controllers/pesanan_controller.dart';
 import '../controllers/user_controller.dart';
-import '../sembako/controllers/sembako_controller.dart';
 
 class UserBinding extends Bindings {
   @override
@@ -13,8 +13,8 @@ class UserBinding extends Bindings {
       () => UserController(),
     );
 
-    Get.lazyPut<SembakoController>(
-      () => SembakoController(),
+    Get.lazyPut<TokoController>(
+      () => TokoController(),
     );
 
     Get.lazyPut<PesananController>(

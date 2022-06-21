@@ -4,6 +4,7 @@ class UserModel {
   String? id;
   int? nik;
   String? nama;
+  String? namaToko;
   int? kpm;
   String? fotoUrl;
   String? username;
@@ -19,6 +20,7 @@ class UserModel {
     this.id,
     this.nik,
     this.nama,
+    this.namaToko,
     this.fotoUrl,
     this.kpm,
     this.username,
@@ -48,6 +50,7 @@ class UserModel {
         id: json["id"] ?? json["_id"],
         nik: json["nik"],
         nama: json["nama"],
+        namaToko: json["namaToko"],
         fotoUrl: json["fotoUrl"],
         kpm: json["kpm"],
         username: json["username"],
@@ -64,6 +67,7 @@ class UserModel {
         "id": id,
         "nik": nik,
         "nama": nama,
+        "namaToko": namaToko,
         "fotoUrl": fotoUrl,
         "kpm": kpm,
         "username": username,
@@ -77,6 +81,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel{id: $id, nik: $nik, nama: $nama, kpm: $kpm, fotoUrl: $fotoUrl, username: $username, password: $password, alamat: $alamat, telpon: $telpon, saldo: $saldo, role: $role, token: $token}, createdAt: $createdAt}';
+    return 'UserModel{id: $id, nik: $nik, nama: $nama, namaToko: $namaToko, kpm: $kpm, fotoUrl: $fotoUrl, username: $username, password: $password, alamat: $alamat, telpon: $telpon, saldo: $saldo, role: $role, token: $token}, createdAt: $createdAt}';
   }
 }

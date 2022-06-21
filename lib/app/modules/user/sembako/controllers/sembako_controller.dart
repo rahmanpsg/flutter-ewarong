@@ -1,12 +1,17 @@
 import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/sembako_model.dart';
-import 'package:e_warong/app/data/models/user_model.dart';
+import 'package:e_warong/app/data/models/toko_model.dart';
 import 'package:e_warong/app/data/services/sembako_service.dart';
-import 'package:e_warong/app/modules/user/controllers/user_controller.dart';
 import 'package:e_warong/app/modules/user/detail_sembako/controllers/detail_sembako_controller.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+class SembakoArguments {
+  final TokoModel toko;
+
+  SembakoArguments({required this.toko});
+}
 
 class SembakoController extends GetxController {
   RxBool isLoading = false.obs;
@@ -19,7 +24,7 @@ class SembakoController extends GetxController {
   RxBool onSearch = false.obs;
   RxString search = ''.obs;
 
-  UserModel masyarakat = Get.find<UserController>().user;
+  late final TokoModel toko;
 
   final RxList<SembakoModel> _sembakoList = <SembakoModel>[].obs;
   final RxList<SembakoModel> _sembakoSearchList = <SembakoModel>[].obs;
@@ -29,6 +34,10 @@ class SembakoController extends GetxController {
 
   @override
   void onInit() {
+    SembakoArguments args = Get.arguments as SembakoArguments;
+
+    toko = args.toko;
+
     getAllSembako();
 
     searchController.addListener(() {
@@ -51,7 +60,7 @@ class SembakoController extends GetxController {
   Future getAllSembako() async {
     isLoading.value = true;
     try {
-      _sembakoList.value = await _sembakoService.getAll();
+      _sembakoList.value = await _sembakoService.getAllAgen(toko.id!);
     } on ApiResponseModel catch (res) {
       isError.value = true;
       errorMessage.value = res.message;

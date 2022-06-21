@@ -10,6 +10,9 @@ class AuthController extends GetxController {
 
   late final AuthService _authService;
 
+  final formKey = GlobalKey<FormState>();
+  final formAgenKey = GlobalKey<FormState>();
+
   // masyarakat
   late final TextEditingController kpmController;
   late final TextEditingController passMasyarakatController;
@@ -45,11 +48,15 @@ class AuthController extends GetxController {
   void login(String role) async {
     if (Get.isSnackbarOpen) return;
 
+    if (role == 'user') {
+      if (formKey.currentState?.validate() != true) return;
+    } else {
+      if (formAgenKey.currentState?.validate() != true) return;
+    }
+
     isLoading.value = true;
 
     try {
-      validateFormLogin(role);
-
       UserModel? _user;
 
       print(_user.toString());
@@ -80,17 +87,5 @@ class AuthController extends GetxController {
 
   void register() {
     Get.back();
-  }
-
-  void validateFormLogin(String role) {
-    if (role == 'masyarakat') {
-      if (kpmController.text.isEmpty || passMasyarakatController.text.isEmpty) {
-        throw 'Nomor KPM dan Password tidak boleh kosong';
-      }
-    } else if (role == 'agen') {
-      if (usernameController.text.isEmpty || passAgenController.text.isEmpty) {
-        throw 'Username dan Password tidak boleh kosong';
-      }
-    }
   }
 }

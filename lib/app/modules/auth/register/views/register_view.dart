@@ -26,23 +26,6 @@ class RegisterView extends GetView<RegisterController> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "NIK",
-                    style: primaryTextStyle.copyWith(fontSize: 16),
-                  ),
-                ),
-                CustomTextField(
-                  controller: controller.nikController,
-                  hintText: "Masukkan NIK",
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                  validator: (String? value) {
-                    return controller.validasiFormRegister('NIK', value);
-                  },
-                ),
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
                     "Nama",
                     style: primaryTextStyle.copyWith(fontSize: 16),
                   ),
@@ -50,8 +33,24 @@ class RegisterView extends GetView<RegisterController> {
                 CustomTextField(
                   controller: controller.namaController,
                   hintText: "Masukkan Nama",
+                  textInputAction: TextInputAction.next,
                   validator: (String? value) {
                     return controller.validasiFormRegister('Nama', value);
+                  },
+                ),
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Nama Toko",
+                    style: primaryTextStyle.copyWith(fontSize: 16),
+                  ),
+                ),
+                CustomTextField(
+                  controller: controller.namaTokoController,
+                  hintText: "Masukkan Nama Toko",
+                  validator: (String? value) {
+                    return controller.validasiFormRegister('Nama Toko', value);
                   },
                 ),
                 const SizedBox(height: 8),

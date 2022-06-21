@@ -11,8 +11,8 @@ class RegisterController extends GetxController {
 
   late final GlobalKey<FormState> formKey;
 
-  late final TextEditingController nikController;
   late final TextEditingController namaController;
+  late final TextEditingController namaTokoController;
   late final TextEditingController alamatController;
   late final TextEditingController telponController;
   late final TextEditingController usernameController;
@@ -24,7 +24,7 @@ class RegisterController extends GetxController {
 
     formKey = GlobalKey<FormState>();
 
-    nikController = TextEditingController();
+    namaTokoController = TextEditingController();
     namaController = TextEditingController();
     alamatController = TextEditingController();
     telponController = TextEditingController();
@@ -36,7 +36,7 @@ class RegisterController extends GetxController {
 
   @override
   void dispose() {
-    nikController.dispose();
+    namaTokoController.dispose();
     namaController.dispose();
     alamatController.dispose();
     telponController.dispose();
@@ -55,14 +55,16 @@ class RegisterController extends GetxController {
 
     try {
       UserModel user = UserModel(
-        nik: int.parse(nikController.text),
         nama: namaController.text,
+        namaToko: namaTokoController.text,
         alamat: alamatController.text,
         telpon: telponController.text,
         username: usernameController.text,
         password: passwordController.text,
         role: "agen",
       );
+
+      print(user.toString());
 
       ApiResponseModel res = await _authService.registrasiAgen(user);
 

@@ -31,9 +31,11 @@ class CustomCard extends StatelessWidget {
             child: Stack(
               children: [
                 fotoUrl != null
-                    ? Image.network(
-                        fotoUrl!,
-                        fit: BoxFit.cover,
+                    ? Center(
+                        child: Image.network(
+                          fotoUrl!,
+                          fit: BoxFit.cover,
+                        ),
                       )
                     : Positioned(
                         left: 0,

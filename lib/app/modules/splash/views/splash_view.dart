@@ -38,7 +38,7 @@ class Landing extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       controller.cekLogin,
     );
 

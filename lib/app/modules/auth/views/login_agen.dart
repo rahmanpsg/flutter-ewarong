@@ -14,52 +14,67 @@ class LoginAgen extends GetView<AuthController> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Username",
-            style: primaryTextStyle.copyWith(fontSize: 16),
-          ),
-          CustomTextField(
-            controller: controller.usernameController,
-            hintText: "Masukkan Username",
-          ),
-          const SizedBox(height: 8),
-          Text(
-            "Password",
-            style: primaryTextStyle.copyWith(fontSize: 16),
-          ),
-          CustomTextField(
-            controller: controller.passAgenController,
-            hintText: "Masukkan Password",
-            obscureText: true,
-          ),
-          const SizedBox(height: 16),
-          Obx(() {
-            return CustomSubmitButton(
-              text: "Masuk",
-              onSubmit: () => controller.login('agen'),
-              isLoading: controller.isLoading.value,
-            );
-          }),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              const Text("Belum punya akun? "),
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routes.REGISTER);
-                },
-                child: Text(
-                  "Daftar",
-                  style: boldTextStyle.copyWith(color: primaryColor),
+      child: Form(
+        key: controller.formAgenKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Username",
+              style: primaryTextStyle.copyWith(fontSize: 16),
+            ),
+            CustomTextField(
+              controller: controller.usernameController,
+              hintText: "Masukkan Username",
+              validator: (val) {
+                if (val == null || val.isEmpty) {
+                  return "Username tidak boleh kosong";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "Password",
+              style: primaryTextStyle.copyWith(fontSize: 16),
+            ),
+            CustomTextField(
+              controller: controller.passAgenController,
+              hintText: "Masukkan Password",
+              obscureText: true,
+              validator: (val) {
+                if (val == null || val.isEmpty) {
+                  return "Password tidak boleh kosong";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 16),
+            Obx(() {
+              return CustomSubmitButton(
+                text: "Masuk",
+                onSubmit: () => controller.login('agen'),
+                isLoading: controller.isLoading.value,
+              );
+            }),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text("Belum punya akun? "),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.REGISTER);
+                  },
+                  child: Text(
+                    "Daftar",
+                    style: boldTextStyle.copyWith(color: primaryColor),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

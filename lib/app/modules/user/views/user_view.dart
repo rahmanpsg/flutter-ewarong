@@ -1,4 +1,4 @@
-import 'package:e_warong/app/modules/user/sembako/views/sembako_view.dart';
+import 'package:e_warong/app/modules/user/toko/views/toko_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class UserView extends GetView<UserController> {
         body: IndexedStack(
           index: controller.tabIndexSelected.value,
           children: [
-            SembakoView(),
+            TokoView(),
             PesananView(),
             PengaturanView(),
           ],
@@ -53,7 +53,7 @@ class UserView extends GetView<UserController> {
                 tabs: [
                   GButton(
                     icon: LineIcons.store,
-                    text: 'Sembako',
+                    text: 'Toko',
                   ),
                   GButton(
                     icon: LineIcons.shoppingBag,

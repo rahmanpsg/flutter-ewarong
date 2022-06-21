@@ -9,6 +9,7 @@ abstract class Routes {
   static const AGEN = _Paths.AGEN;
   static const FORM_SEMBAKO = _Paths.AGEN + _Paths.FORM_SEMBAKO;
   static const USER = _Paths.USER;
+  static const SEMBAKO = _Paths.USER + _Paths.SEMBAKO;
   static const DETAIL_SEMBAKO = _Paths.USER + _Paths.DETAIL_SEMBAKO;
   static const DETAIL_PESANAN = _Paths.DETAIL_PESANAN;
 }
@@ -22,5 +23,6 @@ abstract class _Paths {
   static const FORM_SEMBAKO = '/form-sembako';
   static const DETAIL_PESANAN = '/detail-pesanan';
   static const USER = '/user';
+  static const SEMBAKO = '/sembako';
   static const DETAIL_SEMBAKO = '/detail-sembako';
 }

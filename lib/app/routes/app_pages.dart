@@ -1,3 +1,4 @@
+import 'package:e_warong/app/modules/user/sembako/views/sembako_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agen/bindings/agen_binding.dart';
@@ -10,12 +11,12 @@ import '../modules/auth/register/views/register_view.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/common/detail_pesanan/bindings/detail_pesanan_binding.dart';
 import '../modules/common/detail_pesanan/views/detail_pesanan_view.dart';
-
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/user/bindings/user_binding.dart';
 import '../modules/user/detail_sembako/bindings/detail_sembako_binding.dart';
 import '../modules/user/detail_sembako/views/detail_sembako_view.dart';
+import '../modules/user/sembako/bindings/sembako_binding.dart';
 import '../modules/user/views/user_view.dart';
 
 part 'app_routes.dart';
@@ -65,6 +66,11 @@ class AppPages {
           name: _Paths.DETAIL_SEMBAKO,
           page: () => DetailSembakoView(),
           binding: DetailSembakoBinding(),
+        ),
+        GetPage(
+          name: _Paths.SEMBAKO,
+          page: () => SembakoView(),
+          binding: SembakoBinding(),
         ),
       ],
     ),
