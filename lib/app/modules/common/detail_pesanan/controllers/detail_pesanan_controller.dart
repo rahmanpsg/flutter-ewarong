@@ -39,7 +39,7 @@ class DetailPesananController extends GetxController {
       case UserType.agen:
         return pesanan.value.user!.nama!;
       case UserType.user:
-        return pesanan.value.agen!.nama!;
+        return pesanan.value.agen?.namaToko ?? 'Agen';
     }
   }
 

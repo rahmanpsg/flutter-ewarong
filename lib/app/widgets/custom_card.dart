@@ -26,56 +26,64 @@ class CustomCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           elevation: 2,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Stack(
-              children: [
-                fotoUrl != null
-                    ? Center(
-                        child: Image.network(
-                          fotoUrl!,
-                          fit: BoxFit.cover,
+          child: LayoutBuilder(builder: (context, constraints) {
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Stack(
+                children: [
+                  fotoUrl != null
+                      ? Center(
+                          child: Image.network(
+                            fotoUrl!,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : Positioned(
+                          left: 0,
+                          right: 0,
+                          // top: boxConstraints.minHeight * 0.1,
+                          top: -50,
+                          bottom: 0,
+                          child: Icon(
+                            LineIcons.image,
+                            size: 80,
+                            color: primaryColor,
+                          ),
                         ),
-                      )
-                    : Positioned(
-                        left: 0,
-                        right: 0,
-                        // top: boxConstraints.minHeight * 0.1,
-                        top: -50,
-                        bottom: 0,
-                        child: Icon(
-                          LineIcons.image,
-                          size: 80,
-                          color: primaryColor,
-                        ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      width: double.infinity,
+                      height: constraints.maxHeight * 1 / 3,
+                      color: Colors.black.withOpacity(0.5),
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Column(
+                        children: [
+                          Text(
+                            title,
+                            style: primaryTextStyle.copyWith(
+                              color: Colors.white,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          const SizedBox(height: 4),
+                          Flexible(
+                            child: Text(
+                              subtitle,
+                              style: boldTextStyle.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: double.infinity,
-                    height: 60,
-                    color: Colors.black.withOpacity(0.5),
-                    child: Column(
-                      children: [
-                        Text(
-                          title,
-                          style: primaryTextStyle.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          subtitle,
-                          style: boldTextStyle.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
+                ],
+              ),
+            );
+          }),
         ));
   }
 }

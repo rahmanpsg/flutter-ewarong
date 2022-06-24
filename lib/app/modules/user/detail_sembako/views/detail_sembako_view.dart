@@ -70,7 +70,7 @@ class DetailSembakoView extends GetView<DetailSembakoController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.agen.nama!,
+                            controller.agen.namaToko!,
                             style: kHeaderTextStyle,
                           ),
                           Text(

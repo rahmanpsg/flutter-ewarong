@@ -1,5 +1,5 @@
 name: e_warong
-version: 1.0.0+1
+version: 1.1.0+1
 publish_to: none
 description: A new Flutter project.
 environment:
@@ -14,7 +14,7 @@ dependencies:
   get: ^4.6.5
   get_storage: ^2.0.3
   google_nav_bar: ^5.0.6
-  image_picker: ^0.8.5
+  image_picker: ^0.8.5+3
   intl: ^0.17.0
   line_icons: ^2.0.1
   liquid_pull_to_refresh: 3.0.1

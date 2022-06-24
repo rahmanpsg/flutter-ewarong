@@ -70,6 +70,12 @@ class DetailPesananView extends GetView<DetailPesananController> {
                                           style: boldTextStyle.copyWith(
                                               color: primaryColor),
                                         ),
+                                      if (controller.userType == UserType.user)
+                                        Text(
+                                          controller.pesanan.value.agen?.nama ??
+                                              '',
+                                          style: primaryTextStyle,
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -104,9 +110,13 @@ class DetailPesananView extends GetView<DetailPesananController> {
                               "Pesanan",
                               style: boldTextStyle,
                             ),
-                            trailing: Text(
-                              controller.pesanan.value.sembako!.nama!,
-                              style: primaryTextStyle,
+                            trailing: SizedBox(
+                              width: 200,
+                              child: Text(
+                                controller.pesanan.value.sembako!.nama!,
+                                style: primaryTextStyle,
+                                textAlign: TextAlign.right,
+                              ),
                             ),
                           ),
                           Divider(),
