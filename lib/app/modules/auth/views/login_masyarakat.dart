@@ -1,4 +1,6 @@
 import 'package:e_warong/app/modules/auth/controllers/auth_controller.dart';
+import 'package:e_warong/app/routes/app_pages.dart';
+import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:e_warong/app/themes/app_text.dart';
 import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:e_warong/app/widgets/custom_text_field.dart';
@@ -23,22 +25,42 @@ class LoginMasyarakat extends GetView<AuthController> {
               "Nomor KPM",
               style: primaryTextStyle.copyWith(fontSize: 16),
             ),
-            CustomTextField(
-              controller: controller.kpmController,
-              hintText: "Masukkan Nomor KPM",
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              validator: (val) {
-                if (val == null || val.isEmpty) {
-                  return "Nomor KPM tidak boleh kosong";
+            Autocomplete(
+              optionsBuilder: (TextEditingValue textEditingValue) {
+                if (textEditingValue.text == '') {
+                  return const Iterable<String>.empty();
                 }
+                return controller.listKpm.where((String option) {
+                  return option.contains(textEditingValue.text.toLowerCase());
+                });
+              },
+              onSelected: (String selection) {
+                debugPrint('You just selected $selection');
+              },
+              fieldViewBuilder: (BuildContext context,
+                  TextEditingController textEditingController,
+                  FocusNode focusNode,
+                  VoidCallback onFieldSubmitted) {
+                controller.kpmController = textEditingController;
+                return CustomTextField(
+                  controller: textEditingController,
+                  focusNode: focusNode,
+                  hintText: "Masukkan Nomor KPM",
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return "Nomor KPM tidak boleh kosong";
+                    }
 
-                if (val.length != 16) {
-                  return "Nomor KPM harus 16 digit";
-                }
-                return null;
+                    if (val.length != 16) {
+                      return "Nomor KPM harus 16 digit";
+                    }
+                    return null;
+                  },
+                );
               },
             ),
             const SizedBox(height: 8),
@@ -64,7 +86,17 @@ class LoginMasyarakat extends GetView<AuthController> {
                 onSubmit: () => controller.login('user'),
                 isLoading: controller.isLoading.value,
               );
-            })
+            }),
+            const SizedBox(height: 8),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.LUPA_PASSWORD);
+              },
+              child: Text(
+                'Lupa password?',
+                style: boldTextStyle.copyWith(color: primaryColor),
+              ),
+            )
           ],
         ),
       ),

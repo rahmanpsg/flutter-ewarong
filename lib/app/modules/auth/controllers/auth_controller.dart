@@ -1,6 +1,7 @@
 import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
 import 'package:e_warong/app/data/services/auth_service.dart';
+import 'package:e_warong/app/data/services/user_service.dart';
 import 'package:e_warong/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class AuthController extends GetxController {
   RxBool isLoading = false.obs;
 
   late final AuthService _authService;
+  late final UserService _userService;
 
   final formKey = GlobalKey<FormState>();
   final formAgenKey = GlobalKey<FormState>();
@@ -21,15 +23,20 @@ class AuthController extends GetxController {
   late final TextEditingController usernameController;
   late final TextEditingController passAgenController;
 
+  RxList<String> listKpm = <String>[].obs;
+
   @override
   void onInit() {
     _authService = AuthService();
+    _userService = UserService();
 
-    kpmController = TextEditingController();
+    // kpmController = TextEditingController();
     passMasyarakatController = TextEditingController();
 
     usernameController = TextEditingController();
     passAgenController = TextEditingController();
+
+    getAllKPM();
 
     super.onInit();
   }
@@ -43,6 +50,17 @@ class AuthController extends GetxController {
     passAgenController.dispose();
 
     super.dispose();
+  }
+
+  void getAllKPM() async {
+    final res = await _userService.getAllKPM();
+
+    if (!res.error) {
+      listKpm.value =
+          res.data.map<String>((data) => data['kpm'].toString()).toList();
+    } else {
+      Get.snackbar('Informasi', res.errorMessage);
+    }
   }
 
   void login(String role) async {

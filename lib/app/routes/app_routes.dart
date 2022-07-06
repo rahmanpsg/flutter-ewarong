@@ -5,6 +5,7 @@ abstract class Routes {
   Routes._();
   static const SPLASH = _Paths.SPLASH;
   static const AUTH = _Paths.AUTH;
+  static const LUPA_PASSWORD = _Paths.AUTH + _Paths.LUPA_PASSWORD;
   static const REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const AGEN = _Paths.AGEN;
   static const FORM_SEMBAKO = _Paths.AGEN + _Paths.FORM_SEMBAKO;
@@ -18,6 +19,7 @@ abstract class _Paths {
   _Paths._();
   static const SPLASH = '/splash';
   static const AUTH = '/auth';
+  static const LUPA_PASSWORD = '/lupa-password';
   static const REGISTER = '/register';
   static const AGEN = '/agen';
   static const FORM_SEMBAKO = '/form-sembako';

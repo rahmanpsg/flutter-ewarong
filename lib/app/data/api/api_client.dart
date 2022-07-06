@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:e_warong/app/data/models/api_response_model.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart';
 
 class ApiClient {
   Dio dio = Dio(BaseOptions(
-    // baseUrl: GetPlatform.isAndroid
-    //     ? 'http://10.0.2.2:3000/api'
-    //     : 'http://localhost:3000/api',
-    baseUrl: 'https://ewarong-server.herokuapp.com/api',
+    baseUrl: GetPlatform.isAndroid
+        ? 'http://10.0.2.2:3000/api'
+        : 'http://localhost:3000/api',
+    // baseUrl: 'https://ewarong-server.herokuapp.com/api',
     // connectTimeout: 10000, //10 seconds
     receiveTimeout: 10000,
   ));

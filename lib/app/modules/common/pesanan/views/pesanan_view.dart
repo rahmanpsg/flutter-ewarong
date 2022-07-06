@@ -23,7 +23,7 @@ class PesananView extends GetView<PesananController> {
       ),
       body: Obx(() {
         return DefaultTabController(
-          length: 4,
+          length: 3,
           child: Column(
             children: <Widget>[
               TabBar(
@@ -36,12 +36,12 @@ class PesananView extends GetView<PesananController> {
                             ? ' (${controller.pesanan.length})'
                             : ''),
                   ),
-                  Tab(
-                    text: 'Ditolak' +
-                        (controller.pesananDitolak.isNotEmpty
-                            ? ' (${controller.pesananDitolak.length})'
-                            : ''),
-                  ),
+                  // Tab(
+                  //   text: 'Ditolak' +
+                  //       (controller.pesananDitolak.isNotEmpty
+                  //           ? ' (${controller.pesananDitolak.length})'
+                  //           : ''),
+                  // ),
                   Tab(
                     text: 'Diterima' +
                         (controller.pesananDiterima.isNotEmpty
@@ -60,7 +60,7 @@ class PesananView extends GetView<PesananController> {
                 child: TabBarView(
                   children: <Widget>[
                     PesananList(pesananList: controller.pesanan),
-                    PesananList(pesananList: controller.pesananDitolak),
+                    // PesananList(pesananList: controller.pesananDitolak),
                     PesananList(pesananList: controller.pesananDiterima),
                     PesananList(pesananList: controller.pesananSelesai),
                   ],

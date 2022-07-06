@@ -169,17 +169,17 @@ class DetailPesananView extends GetView<DetailPesananController> {
                   text: "Terima Pesanan",
                   onSubmit: () => controller.confirmPesanan(true),
                 ),
-                const SizedBox(height: 8),
-                if (controller.userType == UserType.agen)
-                  CustomSubmitButton(
-                    icon: Icon(
-                      Icons.back_hand_rounded,
-                      color: Colors.white,
-                    ),
-                    text: "Tolak Pesanan",
-                    color: dangerColor,
-                    onSubmit: () => controller.confirmPesanan(false),
-                  )
+                // const SizedBox(height: 8),
+                // if (controller.userType == UserType.agen)
+                //   CustomSubmitButton(
+                //     icon: Icon(
+                //       Icons.back_hand_rounded,
+                //       color: Colors.white,
+                //     ),
+                //     text: "Tolak Pesanan",
+                //     color: dangerColor,
+                //     onSubmit: () => controller.confirmPesanan(false),
+                //   )
               ],
               if (controller.isLoading.isTrue)
                 Expanded(

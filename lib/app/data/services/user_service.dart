@@ -35,4 +35,12 @@ class UserService {
 
     return await _apiClient.putData('/user/$id', _body);
   }
+
+  Future<ApiResponseModel> getAllKPM() async {
+    final response = await _apiClient.getData('/user/kpm');
+
+    if (!response.error) return response;
+
+    throw response;
+  }
 }

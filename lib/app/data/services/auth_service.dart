@@ -20,7 +20,6 @@ class AuthService {
     if (!response.error) {
       return UserModel.fromJson(response.data);
     }
-    
 
     throw response;
   }

@@ -1,4 +1,3 @@
-import 'package:e_warong/app/modules/user/sembako/views/sembako_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agen/bindings/agen_binding.dart';
@@ -6,6 +5,8 @@ import '../modules/agen/form_sembako/bindings/form_sembako_binding.dart';
 import '../modules/agen/form_sembako/views/form_sembako_view.dart';
 import '../modules/agen/views/agen_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
+import '../modules/auth/lupa_password/bindings/lupa_password_binding.dart';
+import '../modules/auth/lupa_password/views/lupa_password_view.dart';
 import '../modules/auth/register/bindings/register_binding.dart';
 import '../modules/auth/register/views/register_view.dart';
 import '../modules/auth/views/auth_view.dart';
@@ -17,6 +18,7 @@ import '../modules/user/bindings/user_binding.dart';
 import '../modules/user/detail_sembako/bindings/detail_sembako_binding.dart';
 import '../modules/user/detail_sembako/views/detail_sembako_view.dart';
 import '../modules/user/sembako/bindings/sembako_binding.dart';
+import '../modules/user/sembako/views/sembako_view.dart';
 import '../modules/user/views/user_view.dart';
 
 part 'app_routes.dart';
@@ -42,6 +44,11 @@ class AppPages {
           page: () => RegisterView(),
           binding: RegisterBinding(),
           transition: Transition.rightToLeftWithFade,
+        ),
+        GetPage(
+          name: _Paths.LUPA_PASSWORD,
+          page: () => LupaPasswordView(),
+          binding: LupaPasswordBinding(),
         ),
       ],
     ),
