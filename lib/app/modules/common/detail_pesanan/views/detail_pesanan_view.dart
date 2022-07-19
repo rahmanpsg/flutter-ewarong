@@ -29,67 +29,47 @@ class DetailPesananView extends GetView<DetailPesananController> {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: <Widget>[
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Expanded(
-                            child: Row(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CustomImage(
-                                  foto: controller.fotoUrl,
-                                  size: 80,
-                                  empty: Icon(
-                                    LineIcons.userCircle,
-                                    color: Colors.grey,
-                                    size: 40,
+                                Text(
+                                  controller.title,
+                                  style: boldTextStyle.copyWith(
+                                      color: primaryColor),
+                                ),
+                                Text(
+                                  controller.subtile.toString(),
+                                  style: primaryTextStyle,
+                                ),
+                                if (controller.userType == UserType.agen)
+                                  Text(
+                                    controller.pesanan.value.user!.saldoFormat,
+                                    style: boldTextStyle.copyWith(
+                                        color: primaryColor),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                SizedBox(
-                                  width: Get.width * .5,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        controller.title,
-                                        style: boldTextStyle.copyWith(
-                                            color: primaryColor),
-                                      ),
-                                      Text(
-                                        controller.subtile.toString(),
-                                        style: primaryTextStyle,
-                                      ),
-                                      if (controller.userType == UserType.agen)
-                                        Text(
-                                          controller
-                                              .pesanan.value.user!.saldoFormat,
-                                          style: boldTextStyle.copyWith(
-                                              color: primaryColor),
-                                        ),
-                                      if (controller.userType == UserType.user)
-                                        Text(
-                                          controller.pesanan.value.agen?.nama ??
-                                              '',
-                                          style: primaryTextStyle,
-                                        ),
-                                    ],
+                                if (controller.userType == UserType.user)
+                                  Text(
+                                    controller.pesanan.value.agen?.nama ?? '',
+                                    style: primaryTextStyle,
                                   ),
-                                ),
                               ],
                             ),
-                          ),
-                          Text(
-                            controller.pesanan.value.jumlah.toString(),
-                            style: boldTextStyle.copyWith(
-                              color: primaryColor,
-                              fontSize: 30,
+                            Text(
+                              controller.pesanan.value.jumlah.toString(),
+                              style: boldTextStyle.copyWith(
+                                color: primaryColor,
+                                fontSize: 30,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Divider(),
                       Column(

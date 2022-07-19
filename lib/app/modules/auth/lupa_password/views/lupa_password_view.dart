@@ -44,7 +44,7 @@ class LupaPasswordView extends GetView<LupaPasswordController> {
                 style: primaryTextStyle.copyWith(fontSize: 16),
               ),
               CustomTextField(
-                controller: controller.kpmController,
+                controller: controller.telpController,
                 hintText: "Masukkan nomor telepon anda",
                 keyboardType: TextInputType.phone,
                 validator: (val) {
@@ -55,11 +55,13 @@ class LupaPasswordView extends GetView<LupaPasswordController> {
                 },
               ),
               const SizedBox(height: 16),
-              CustomSubmitButton(
-                text: "Kirim",
-                onSubmit: controller.kirim,
-                isLoading: controller.isLoading.value,
-              ),
+              Obx(() {
+                return CustomSubmitButton(
+                  text: "Kirim",
+                  onSubmit: controller.kirim,
+                  isLoading: controller.isLoading.value,
+                );
+              }),
             ],
           ),
         ),

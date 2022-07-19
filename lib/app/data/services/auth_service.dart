@@ -24,9 +24,9 @@ class AuthService {
     throw response;
   }
 
-  Future<UserModel> login(String ktm, String password) async {
+  Future<UserModel> login(String kpm, String password) async {
     final response = await _apiClient.postData('/auth/login', {
-      'ktm': ktm,
+      'kpm': kpm,
       'password': password,
     });
 
@@ -59,6 +59,17 @@ class AuthService {
   Future<ApiResponseModel> registrasiAgen(UserModel user) async {
     final response =
         await _apiClient.postData('/auth/registrasi', user.toJson());
+
+    if (!response.error) return response;
+
+    throw response;
+  }
+
+  Future<ApiResponseModel> lupaPassword(String kpm, String telpon) async {
+    final response = await _apiClient.postData('/auth/lupaPassword', {
+      'kpm': kpm,
+      'telpon': telpon,
+    });
 
     if (!response.error) return response;
 
