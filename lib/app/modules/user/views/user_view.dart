@@ -1,3 +1,4 @@
+import 'package:e_warong/app/modules/common/profil/views/Profil_view.dart';
 import 'package:e_warong/app/modules/user/toko/views/toko_view.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../../common/pengaturan/views/pengaturan_view.dart';
 import '../../common/pesanan/views/pesanan_view.dart';
 import '../controllers/user_controller.dart';
 
@@ -20,7 +20,7 @@ class UserView extends GetView<UserController> {
           children: [
             TokoView(),
             PesananView(),
-            PengaturanView(),
+            ProfilView(),
           ],
         ),
         bottomNavigationBar: Container(

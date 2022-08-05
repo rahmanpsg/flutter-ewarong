@@ -5,11 +5,10 @@ import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 
-import '../controllers/pengaturan_controller.dart';
+import '../controllers/profil_controller.dart';
 
-class PengaturanView extends GetView<PengaturanController> {
+class ProfilView extends GetView<ProfilController> {
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyle = boldTextStyle.copyWith(color: primaryColor);
@@ -21,7 +20,7 @@ class PengaturanView extends GetView<PengaturanController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pengaturan"),
+        title: Text("Profil"),
         centerTitle: true,
         // actions: [
         //   Obx(() {

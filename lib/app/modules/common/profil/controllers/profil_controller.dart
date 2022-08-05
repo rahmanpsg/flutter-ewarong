@@ -11,10 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class PengaturanController<T extends GetxController> extends GetxController {
+class ProfilController<T extends GetxController> extends GetxController {
   final UserType userType;
 
-  PengaturanController({required this.userType});
+  ProfilController({required this.userType});
 
   RxBool isLoading = false.obs;
   RxBool isEdit = false.obs;

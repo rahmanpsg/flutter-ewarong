@@ -1,5 +1,5 @@
 import 'package:e_warong/app/data/enums/user_type.dart';
-import 'package:e_warong/app/modules/common/pengaturan/controllers/pengaturan_controller.dart';
+import 'package:e_warong/app/modules/common/profil/controllers/profil_controller.dart';
 import 'package:e_warong/app/modules/user/toko/controllers/toko_controller.dart';
 import 'package:get/get.dart';
 
@@ -23,8 +23,8 @@ class UserBinding extends Bindings {
       ),
     );
 
-    Get.lazyPut<PengaturanController>(
-      () => PengaturanController<UserController>(userType: UserType.user),
+    Get.lazyPut<ProfilController>(
+      () => ProfilController<UserController>(userType: UserType.user),
     );
   }
 }

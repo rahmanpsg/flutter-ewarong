@@ -96,58 +96,62 @@ class DetailSembakoView extends GetView<DetailSembakoController> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15.0,
-              vertical: 8,
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: width * .15,
-                  child: CustomSubmitButton(
-                    icon: Icon(
-                      LineIcons.minus,
-                      color: Colors.white,
-                    ),
-                    onSubmit: controller.substractJumlah,
-                  ),
-                ),
-                const Spacer(),
-                Obx(() {
-                  return SizedBox(
-                    width: width * .1,
-                    child: Text(
-                      controller.jumlah.value.toString(),
-                      style: boldTextStyle.copyWith(
-                        color: primaryColor,
-                        fontSize: 30,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                }),
-                const Spacer(),
-                SizedBox(
-                  width: width * .15,
-                  child: CustomSubmitButton(
-                    icon: Icon(
-                      LineIcons.plus,
-                      color: Colors.white,
-                    ),
-                    onSubmit: controller.addJumlah,
-                  ),
-                ),
-                const Spacer(),
-                SizedBox(
-                  width: width * .45,
-                  child: CustomSubmitButton(
-                    text: 'Pesan',
-                    onSubmit: controller.pesan,
-                  ),
-                )
-              ],
-            ),
-          ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15.0,
+                vertical: 8,
+              ),
+              child: CustomSubmitButton(
+                text: 'Pesan',
+                onSubmit: controller.pesan,
+              )
+              // Row(
+              // children: [
+              // SizedBox(
+              //   width: width * .15,
+              //   child: CustomSubmitButton(
+              //     icon: Icon(
+              //       LineIcons.minus,
+              //       color: Colors.white,
+              //     ),
+              //     onSubmit: controller.substractJumlah,
+              //   ),
+              // ),
+              // const Spacer(),
+              // Obx(() {
+              //   return SizedBox(
+              //     width: width * .1,
+              //     child: Text(
+              //       controller.jumlah.value.toString(),
+              //       style: boldTextStyle.copyWith(
+              //         color: primaryColor,
+              //         fontSize: 30,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   );
+              // }),
+              // const Spacer(),
+              // SizedBox(
+              //   width: width * .15,
+              //   child: CustomSubmitButton(
+              //     icon: Icon(
+              //       LineIcons.plus,
+              //       color: Colors.white,
+              //     ),
+              //     onSubmit: controller.addJumlah,
+              //   ),
+              // ),
+              //   const Spacer(),
+              //   SizedBox(
+              //     width: width * .45,
+              //     child: CustomSubmitButton(
+              //       text: 'Pesan',
+              //       onSubmit: controller.pesan,
+              //     ),
+              //   )
+              // ],
+              // ),
+              ),
         ),
       ),
     );
