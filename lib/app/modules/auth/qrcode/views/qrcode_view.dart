@@ -19,36 +19,38 @@ class QrcodeView extends GetView<QrcodeController> {
         title: const Text('Login QR Code'),
         centerTitle: true,
       ),
-      body: Stack(
-        children: [
-          QRView(
-            key: controller.qrKey,
-            onQRViewCreated: controller.onQRViewCreated,
-            overlay: QrScannerOverlayShape(
-              borderColor: primaryColor,
-            ),
-          ),
-          Positioned(
-            top: 10,
-            right: 10,
-            child: ElevatedButton.icon(
-              onPressed: controller.openFromFile,
-              icon: LineIcon(LineIcons.image),
-              label: Text("Buka file"),
-            ),
-          ),
-          if (controller.isLoading.isTrue)
-            Center(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 5.0,
-                  sigmaY: 5.0,
-                ),
-                child: CircularProgressIndicator(),
+      body: Obx(() {
+        return Stack(
+          children: [
+            QRView(
+              key: controller.qrKey,
+              onQRViewCreated: controller.onQRViewCreated,
+              overlay: QrScannerOverlayShape(
+                borderColor: primaryColor,
               ),
-            )
-        ],
-      ),
+            ),
+            Positioned(
+              top: 10,
+              right: 10,
+              child: ElevatedButton.icon(
+                onPressed: controller.openFromFile,
+                icon: LineIcon(LineIcons.image),
+                label: Text("Buka file"),
+              ),
+            ),
+            if (controller.isLoading.isTrue)
+              Center(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 5.0,
+                    sigmaY: 5.0,
+                  ),
+                  child: CircularProgressIndicator(),
+                ),
+              )
+          ],
+        );
+      }),
     );
   }
 }

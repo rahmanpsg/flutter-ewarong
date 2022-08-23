@@ -1,17 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:e_warong/app/data/api/api_client.dart';
 import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
+import 'package:e_warong/app/data/utils/code_painter.dart';
 import 'package:e_warong/app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-// import 'package:qrscan/qrscan.dart' as scanner;
 
 class UserService {
   final ApiClient _apiClient = ApiClient();
@@ -62,16 +61,17 @@ class UserService {
         'role': role,
       });
 
-      QrPainter qrPainter = QrPainter(
+      final image = await QrPainter(
         data: data,
         version: QrVersions.auto,
         color: primaryColor,
+        gapless: true,
         emptyColor: Colors.white,
         errorCorrectionLevel: QrErrorCorrectLevel.H,
-      );
+      ).toImage(2048);
 
       final picData =
-          await qrPainter.toImageData(2048, format: ImageByteFormat.png);
+          await CodePainter(qrImage: image, margin: 80).toImageData(2048);
 
       Uint8List result = picData!.buffer
           .asUint8List(picData.offsetInBytes, picData.lengthInBytes);

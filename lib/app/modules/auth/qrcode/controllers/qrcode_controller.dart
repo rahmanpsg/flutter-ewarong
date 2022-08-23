@@ -50,7 +50,8 @@ class QrcodeController extends GetxController {
 
       await loginQRCode(result);
     } catch (e) {
-      print(e);
+      print("error: $e");
+      Get.snackbar('Gagal', "QR Code tidak dikenali");
     }
   }
 
