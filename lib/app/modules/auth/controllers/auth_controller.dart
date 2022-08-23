@@ -16,11 +16,11 @@ class AuthController extends GetxController {
   final formAgenKey = GlobalKey<FormState>();
 
   // masyarakat
-  late final TextEditingController kpmController;
+  late TextEditingController kpmController;
   late final TextEditingController passMasyarakatController;
 
   // agen
-  late final TextEditingController usernameController;
+  late final TextEditingController kodeController;
   late final TextEditingController passAgenController;
 
   RxList<String> listKpm = <String>[].obs;
@@ -33,7 +33,7 @@ class AuthController extends GetxController {
     // kpmController = TextEditingController();
     passMasyarakatController = TextEditingController();
 
-    usernameController = TextEditingController();
+    kodeController = TextEditingController();
     passAgenController = TextEditingController();
 
     getAllKPM();
@@ -46,7 +46,7 @@ class AuthController extends GetxController {
     kpmController.dispose();
     passMasyarakatController.dispose();
 
-    usernameController.dispose();
+    kodeController.dispose();
     passAgenController.dispose();
 
     super.dispose();
@@ -84,7 +84,7 @@ class AuthController extends GetxController {
             kpmController.text, passMasyarakatController.text);
       } else if (role == 'agen') {
         _user = await _authService.loginAgen(
-            usernameController.text, passAgenController.text);
+            kodeController.text, passAgenController.text);
       }
 
       if (_user != null) {

@@ -85,21 +85,21 @@ class RegisterView extends GetView<RegisterController> {
                         'Nomor Telepon', value);
                   },
                 ),
-                const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Username",
-                    style: primaryTextStyle.copyWith(fontSize: 16),
-                  ),
-                ),
-                CustomTextField(
-                  controller: controller.usernameController,
-                  hintText: "Masukkan Username",
-                  validator: (String? value) {
-                    return controller.validasiFormRegister('Username', value);
-                  },
-                ),
+                // const SizedBox(height: 16),
+                // Align(
+                //   alignment: Alignment.centerLeft,
+                //   child: Text(
+                //     "Username",
+                //     style: primaryTextStyle.copyWith(fontSize: 16),
+                //   ),
+                // ),
+                // CustomTextField(
+                //   controller: controller.usernameController,
+                //   hintText: "Masukkan Username",
+                //   validator: (String? value) {
+                //     return controller.validasiFormRegister('Username', value);
+                //   },
+                // ),
                 const SizedBox(height: 16),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -117,10 +117,13 @@ class RegisterView extends GetView<RegisterController> {
                   },
                 ),
                 const SizedBox(height: 16),
-                CustomSubmitButton(
-                  text: "Daftar",
-                  onSubmit: controller.register,
-                ),
+                Obx(() {
+                  return CustomSubmitButton(
+                    text: "Daftar",
+                    onSubmit: controller.register,
+                    isLoading: controller.isLoading.value,
+                  );
+                }),
               ],
             ),
           ),

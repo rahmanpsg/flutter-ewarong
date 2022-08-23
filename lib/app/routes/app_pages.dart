@@ -7,6 +7,8 @@ import '../modules/agen/views/agen_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/lupa_password/bindings/lupa_password_binding.dart';
 import '../modules/auth/lupa_password/views/lupa_password_view.dart';
+import '../modules/auth/qrcode/bindings/qrcode_binding.dart';
+import '../modules/auth/qrcode/views/qrcode_view.dart';
 import '../modules/auth/register/bindings/register_binding.dart';
 import '../modules/auth/register/views/register_view.dart';
 import '../modules/auth/views/auth_view.dart';
@@ -49,6 +51,11 @@ class AppPages {
           name: _Paths.LUPA_PASSWORD,
           page: () => LupaPasswordView(),
           binding: LupaPasswordBinding(),
+        ),
+        GetPage(
+          name: _Paths.QRCODE,
+          page: () => const QrcodeView(),
+          binding: QrcodeBinding(),
         ),
       ],
     ),

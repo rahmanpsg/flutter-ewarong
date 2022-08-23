@@ -7,6 +7,8 @@ import 'package:e_warong/app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 class LoginMasyarakat extends GetView<AuthController> {
   const LoginMasyarakat({Key? key}) : super(key: key);
@@ -88,14 +90,29 @@ class LoginMasyarakat extends GetView<AuthController> {
               );
             }),
             const SizedBox(height: 8),
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(Routes.LUPA_PASSWORD);
-              },
-              child: Text(
-                'Lupa password?',
-                style: boldTextStyle.copyWith(color: primaryColor),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.LUPA_PASSWORD);
+                  },
+                  child: Text(
+                    'Lupa password?',
+                    style: boldTextStyle.copyWith(color: primaryColor),
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {
+                    Get.toNamed(Routes.QRCODE);
+                  },
+                  icon: LineIcon(LineIcons.qrcode),
+                  label: Text(
+                    'Masuk dengan QR code',
+                    style: boldTextStyle.copyWith(color: primaryColor),
+                  ),
+                ),
+              ],
             )
           ],
         ),

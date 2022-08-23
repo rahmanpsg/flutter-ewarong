@@ -5,6 +5,8 @@ import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../controllers/profil_controller.dart';
 
@@ -96,19 +98,15 @@ class ProfilView extends GetView<ProfilController> {
                             enabled: controller.isEdit.isTrue,
                             onTap: () {
                               controller.showEditDialog(
-                                  'Username', controller.user.value.username!);
+                                  'Kode', controller.user.value.kode!);
                             },
                             title: Text(
-                              "Username",
+                              "Kode",
                               style: textStyle,
                             ),
                             trailing: Text(
-                              controller.isEdit.isTrue
-                                  ? controller.username
-                                  : controller.user.value.username!,
-                              style: controller.isEdit.isTrue
-                                  ? textEditStyle
-                                  : textStyle,
+                              controller.user.value.kode ?? '-',
+                              style: textStyle,
                             ),
                           ),
                         if (controller.userType == UserType.user)
@@ -122,26 +120,26 @@ class ProfilView extends GetView<ProfilController> {
                               style: textStyle,
                             ),
                           ),
-                        const Divider(),
-                        ListTile(
-                          enabled: controller.isEdit.isTrue,
-                          onTap: () {
-                            controller.showEditDialog(
-                                'Password', controller.user.value.password!);
-                          },
-                          title: Text(
-                            "Password",
-                            style: textStyle,
-                          ),
-                          trailing: Text(
-                            controller.isEdit.isTrue
-                                ? controller.password
-                                : '********',
-                            style: controller.isEdit.isTrue
-                                ? textEditStyle
-                                : textStyle,
-                          ),
-                        ),
+                        // const Divider(),
+                        // ListTile(
+                        //   enabled: controller.isEdit.isTrue,
+                        //   onTap: () {
+                        //     controller.showEditDialog(
+                        //         'Password', controller.user.value.password!);
+                        //   },
+                        //   title: Text(
+                        //     "Password",
+                        //     style: textStyle,
+                        //   ),
+                        //   trailing: Text(
+                        //     controller.isEdit.isTrue
+                        //         ? controller.password
+                        //         : '********',
+                        //     style: controller.isEdit.isTrue
+                        //         ? textEditStyle
+                        //         : textStyle,
+                        //   ),
+                        // ),
                         const Divider(),
                         ListTile(
                           title: Text(
@@ -180,6 +178,27 @@ class ProfilView extends GetView<ProfilController> {
                             controller.user.value.tanggal,
                             style: textStyle,
                           ),
+                        ),
+                        const Divider(),
+                        ListTile(
+                          title: Text(
+                            "Download QR Code",
+                            style: textStyle,
+                          ),
+                          trailing: controller.isLoading.isTrue
+                              ? SizedBox(
+                                  height: 25,
+                                  width: 25,
+                                  child:
+                                      CircularProgressIndicator(strokeWidth: 2),
+                                )
+                              : IconButton(
+                                  onPressed: controller.downloadQRCode,
+                                  icon: LineIcon(
+                                    LineIcons.alternateCloudDownload,
+                                    color: primaryColor,
+                                  ),
+                                ),
                         ),
                       ],
                     ),

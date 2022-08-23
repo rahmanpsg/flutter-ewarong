@@ -6,6 +6,8 @@ import 'package:e_warong/app/widgets/custom_submit_button.dart';
 import 'package:e_warong/app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 class LoginAgen extends GetView<AuthController> {
   const LoginAgen({Key? key}) : super(key: key);
@@ -21,15 +23,15 @@ class LoginAgen extends GetView<AuthController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "Username",
+              "Kode",
               style: primaryTextStyle.copyWith(fontSize: 16),
             ),
             CustomTextField(
-              controller: controller.usernameController,
-              hintText: "Masukkan Username",
+              controller: controller.kodeController,
+              hintText: "Masukkan Kode",
               validator: (val) {
                 if (val == null || val.isEmpty) {
-                  return "Username tidak boleh kosong";
+                  return "Kode tidak boleh kosong";
                 }
                 return null;
               },
@@ -68,6 +70,17 @@ class LoginAgen extends GetView<AuthController> {
                   },
                   child: Text(
                     "Daftar",
+                    style: boldTextStyle.copyWith(color: primaryColor),
+                  ),
+                ),
+                const Spacer(),
+                TextButton.icon(
+                  onPressed: () {
+                    Get.toNamed(Routes.QRCODE);
+                  },
+                  icon: LineIcon(LineIcons.qrcode),
+                  label: Text(
+                    'Masuk dengan QR code',
                     style: boldTextStyle.copyWith(color: primaryColor),
                   ),
                 ),

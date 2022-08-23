@@ -13,6 +13,7 @@ abstract class Routes {
   static const SEMBAKO = _Paths.USER + _Paths.SEMBAKO;
   static const DETAIL_SEMBAKO = _Paths.USER + _Paths.DETAIL_SEMBAKO;
   static const DETAIL_PESANAN = _Paths.DETAIL_PESANAN;
+  static const QRCODE = _Paths.AUTH + _Paths.QRCODE;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const USER = '/user';
   static const SEMBAKO = '/sembako';
   static const DETAIL_SEMBAKO = '/detail-sembako';
+  static const QRCODE = '/qrcode';
 }

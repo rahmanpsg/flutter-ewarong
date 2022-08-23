@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:e_warong/app/data/api/api_client.dart';
 import 'package:e_warong/app/data/models/api_response_model.dart';
 import 'package:e_warong/app/data/models/user_model.dart';
@@ -31,26 +33,40 @@ class AuthService {
     });
 
     if (!response.error) {
-      UserModel _user = UserModel.fromJson(response.data);
-      GetStorage().write('token', _user.token);
+      UserModel user = UserModel.fromJson(response.data);
+      GetStorage().write('token', user.token);
 
-      return _user;
+      return user;
     }
 
     throw response;
   }
 
-  Future loginAgen(String username, String password) async {
+  Future<UserModel> loginAgen(String kode, String password) async {
     final response = await _apiClient.postData('/auth/login', {
-      'username': username,
+      'kode': kode,
       'password': password,
     });
 
     if (!response.error) {
-      UserModel _user = UserModel.fromJson(response.data);
-      GetStorage().write('token', _user.token);
+      UserModel user = UserModel.fromJson(response.data);
+      GetStorage().write('token', user.token);
 
-      return _user;
+      return user;
+    }
+
+    throw response;
+  }
+
+  Future<UserModel> loginQRCode(String json) async {
+    final response =
+        await _apiClient.postData('/auth/login/qrcode', jsonDecode(json));
+
+    if (!response.error) {
+      UserModel user = UserModel.fromJson(response.data);
+      GetStorage().write('token', user.token);
+
+      return user;
     }
 
     throw response;

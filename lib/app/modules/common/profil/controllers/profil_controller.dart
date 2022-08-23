@@ -138,6 +138,23 @@ class ProfilController<T extends GetxController> extends GetxController {
     );
   }
 
+  void downloadQRCode() async {
+    try {
+      isLoading.value = true;
+
+      final response = await _userService.saveQRCode(
+          id: user.value.id!, role: user.value.role!);
+
+      if (response != true) return;
+
+      showSnackbar('QR Code berhasil diunduh');
+    } catch (e) {
+      print(e);
+    }
+
+    isLoading.value = false;
+  }
+
   void logout() {
     GetStorage().erase();
     Get.offNamed(Routes.AUTH);

@@ -18,7 +18,12 @@ class AgenView extends GetView<AgenController> {
       return Scaffold(
         body: IndexedStack(
           index: controller.tabIndexSelected.value,
-          children: [SembakoView(), PesananView(), LaporanView(), ProfilView()],
+          children: [
+            SembakoView(),
+            PesananView(),
+            LaporanView(),
+            ProfilView(),
+          ],
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
