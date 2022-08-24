@@ -81,7 +81,9 @@ class UserService {
 
       final path = directory.path;
 
-      File qrFile = File('$path/qrcode.png');
+      DateTime now = DateTime.now();
+
+      File qrFile = File('$path/qrcode_${now.millisecondsSinceEpoch}.png');
 
       await qrFile.writeAsBytes(result);
 
